@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Navbar from "../component/Navbar";
 
 function Queries() {
   return (
-    <div>Queries</div>
-  )
+    <div>
+      <Navbar />
+      Queries
+    </div>
+  );
 }
 
-export default Queries
+export default Queries;

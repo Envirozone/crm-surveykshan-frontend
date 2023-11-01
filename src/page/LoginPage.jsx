@@ -4,26 +4,20 @@ import cus from "../assets/cus.png";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../Redux/Slices/AuthSlice";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   async function handleForm(e) {
     e.preventDefault();
-    try {
-      console.log("1111");
-      const res = await axios.post(`${window.apiURL}/user/login`, {
-        username,
-        password,
-      });
-      if (res.status === 200) {
-        toast.success(res.data.message);
-        navigate("/home");
-      }
-    } catch (error) {
-      toast.error("Something Went Wrong Please Try Again");
+    const response = await dispatch(login({ username, password }));
+    if (response?.payload?.success) {
+      navigate("/dashboard");
     }
   }
 
