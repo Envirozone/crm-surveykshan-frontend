@@ -10,7 +10,6 @@ function Navbar() {
   const navigate = useNavigate();
   let isUserLoggedIn = localStorage.getItem("isLoggedIn");
   let userRole = localStorage.getItem("role");
-  // console.log(isUserLoggedIn, userRole);
 
   async function logout() {
     await dispatch({ type: "LOGOUT" });
@@ -24,9 +23,7 @@ function Navbar() {
     >
       <div className="flex items-center justify-evenly">
         <div className="w-40">
-          <Link to={"/dashboard"}>
-            <img src={logo} alt="surveykshan" />
-          </Link>
+          <img src={logo} alt="surveykshan" />
         </div>
         <div className="w-10">
           <img src={query} />

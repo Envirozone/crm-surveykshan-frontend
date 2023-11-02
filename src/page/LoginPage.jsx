@@ -26,7 +26,6 @@ function LoginPage() {
 
   return (
     <div>
-      <Navbar />
       <div className="flex gap-4">
         <div
           style={{

@@ -3,7 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const initialState = {
-  isLoggedIn: localStorage.getItem("isLoggedIn") || false,
+  isLoggedIn: localStorage.getItem("isLoggedIn")||"",
   role: localStorage.getItem("role") || "",
   data: localStorage.getItem("data"),
 };
@@ -50,11 +50,8 @@ const authSlice = createSlice({
       })
 
       .addCase("LOGOUT", (state, action) => {
-        localStorage.setItem("data", null);
-        localStorage.setItem("isLoggedIn", false);
-        localStorage.setItem("role", "");
-        localStorage.setItem("accessToken", null);
-        state.isLoggedIn = false;
+        localStorage.clear();
+        state.isLoggedIn = "false";
         state.data = null;
         state.role = null;
       });
