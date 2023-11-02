@@ -27,24 +27,37 @@ export const login = createAsyncThunk("/login", async (data) => {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: (state = initialState, action) => {
+    switch (action.type) {
+      case "LOGOUT": {
+        return state;
+      }
+      default:
+        return state;
+    }
+  },
   extraReducers: (builder) => {
-    builder.addCase(login.fulfilled, (state, action) => {
-      //   localStorage.setItem(
-      //     "data",
-      //     JSON.stringify(action?.payload?.user || "Not Set Data")
-      //   );
-      localStorage.setItem("data", action?.payload?.user || "Not Set Data");
-      localStorage.setItem("isLoggedIn", true);
-      localStorage.setItem(
-        "role",
-        action?.payload?.user?.usertype || "Role Not Set"
-      );
-      localStorage.setItem("accessToken", action?.payload?.access_token);
-      state.isLoggedIn = true;
-      state.data = action?.payload?.user;
-      state.role = action?.payload?.user?.usertype;
-    });
+    builder
+      .addCase(login.fulfilled, (state, action) => {
+        localStorage.setItem("data", JSON.stringify(action?.payload?.user));
+        // localStorage.setItem("data", action?.payload?.user || "Not Set Data");
+        localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem("role", action?.payload?.user?.usertype);
+        localStorage.setItem("accessToken", action?.payload?.access_token);
+        state.isLoggedIn = true;
+        state.data = action?.payload?.user;
+        state.role = action?.payload?.user?.usertype;
+      })
+
+      .addCase("LOGOUT", (state, action) => {
+        localStorage.setItem("data", null);
+        localStorage.setItem("isLoggedIn", false);
+        localStorage.setItem("role", "");
+        localStorage.setItem("accessToken", null);
+        state.isLoggedIn = false;
+        state.data = null;
+        state.role = null;
+      });
   },
 });
 
