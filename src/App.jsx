@@ -8,7 +8,6 @@ import RequireAuth from "./helper/RequireAuth";
 import AdminDashboard from "./page/AdminDashboard";
 import Denied from "./page/Denied";
 import PageNotFound from "./page/PageNotFound";
-import Navbar from "./component/Navbar";
 
 function App() {
   return (
