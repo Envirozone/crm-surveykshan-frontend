@@ -11,7 +11,7 @@ function RequireAuth({ allowRole }) {
       ) : isUserLoggedIn ? (
         <Navigate to="/denied" />
       ) : (
-        <Navigate to="/login" />
+        <Navigate to="/" />
       )}
     </div>
   );

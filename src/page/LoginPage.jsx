@@ -16,11 +16,10 @@ function LoginPage() {
   async function handleForm(e) {
     e.preventDefault();
     const response = await dispatch(login({ username, password }));
-    if (response?.payload?.user?.usertype === "client") {
-      navigate("/user/dashboard");
-    }
-    if (response?.payload?.user?.usertype === "admin") {
-      navigate("/admin/dashboard");
+    window.location.reload(true);
+    if (response?.payload?.success === true) {
+      console.log(response?.payload?.success);
+      navigate("/");
     }
   }
 

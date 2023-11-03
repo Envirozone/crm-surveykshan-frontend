@@ -1,5 +1,5 @@
 import "./App.css";
-import DashBoard from "./page/DashBoard";
+import DashBoard from "./page/UserDashBoard";
 import LoginPage from "./page/LoginPage";
 import { Route, Routes } from "react-router-dom";
 import Queries from "./page/Queries";
@@ -8,27 +8,39 @@ import RequireAuth from "./helper/RequireAuth";
 import AdminDashboard from "./page/AdminDashboard";
 import Denied from "./page/Denied";
 import PageNotFound from "./page/PageNotFound";
+import UserDashBoard from "./page/UserDashBoard";
 
 function App() {
+  let isUserLoggedIn = localStorage.getItem("isLoggedIn");
+  let userRole = localStorage.getItem("role");
   return (
     <>
       <Routes>
-        <Route path="/" element={<LoginPage />}></Route>
+        {(isUserLoggedIn === "true" && userRole === "client") ||
+        userRole === "admin" ? (
+          <Route
+            path="/"
+            element={
+              userRole === "admin" ? <AdminDashboard /> : <UserDashBoard />
+            }
+          />
+        ) : (
+          <Route path="/" element={<LoginPage />} />
+        )}
         <Route path="/denied" element={<Denied />}></Route>
         <Route path="*" element={<PageNotFound />}></Route>
 
         <Route element={<RequireAuth allowRole={["client"]} />}>
-          <Route path="/user/dashboard" element={<DashBoard />}></Route>
           <Route path="/queries" element={<Queries />}></Route>
           <Route path="/addQuery" element={<AddQuery />}></Route>
         </Route>
         <Route element={<RequireAuth allowRole={["admin"]} />}>
-          <Route path="/admin/dashboard" element={<AdminDashboard />}></Route>
           <Route path="/all-queries" element={<Queries />}></Route>
         </Route>
-        <Route element={<RequireAuth allowRole={["client", "admin"]} />}>
+        {/* Example to add route for both user and admin in future  */}
+        {/* <Route element={<RequireAuth allowRole={["client", "admin"]} />}>
           <Route path="/contact-us" element={<DashBoard />}></Route>
-        </Route>
+        </Route> */}
       </Routes>
     </>
   );

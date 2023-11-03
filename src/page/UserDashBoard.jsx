@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-function DashBoard() {
+function UserDashBoard() {
   const data = localStorage.getItem("data");
   const objData = JSON.parse(data);
   const [statusData, setStatusData] = useState({});
@@ -25,15 +25,15 @@ function DashBoard() {
     <div>
       <div>
         <div className="mt-16 flex justify-center items-center gap-16">
-          <div className="h-48 w-48 bg-blue-400 rounded-lg shadow-lg shadow-black hover:shadow-md hover:shadow-black">
+          <div className="h-48 w-48 bg-blue-400 rounded-lg shadow-md shadow-black hover:shadow-lg hover:shadow-black">
             <h1>Pending Ticket</h1>
             <h2>{statusData.pendingTicketsCounts}</h2>
           </div>
-          <div className="h-60 w-48 bg-blue-400 rounded-lg shadow-lg shadow-black hover:shadow-md hover:shadow-black">
+          <div className="h-60 w-48 bg-blue-400 rounded-lg shadow-md shadow-black hover:shadow-lg hover:shadow-black">
             <h1>Completed Ticket</h1>
             <h2>{statusData.resolvedTicketsCounts}</h2>
           </div>
-          <div className="h-48 w-48 bg-blue-400 rounded-lg shadow-lg shadow-black hover:shadow-md hover:shadow-black">
+          <div className="h-48 w-48 bg-blue-400 rounded-lg shadow-md shadow-black hover:shadow-lg hover:shadow-black">
             <h1>In Progress Ticket</h1>
             <h2>{statusData.inProgressTicketsCounts}</h2>
           </div>
@@ -54,4 +54,4 @@ function DashBoard() {
   );
 }
 
-export default DashBoard;
+export default UserDashBoard;

@@ -13,6 +13,7 @@ function Navbar() {
 
   async function logout() {
     await dispatch({ type: "LOGOUT" });
+    window.location.reload(true);
     toast.success("User SuccessFully Logout");
     navigate("/");
   }
@@ -31,11 +32,18 @@ function Navbar() {
       </div>
       <div>
         <ul className="flex items-center justify-center text-white gap-5 pl-5 font-bold text-xl">
-          {isUserLoggedIn == "true" && userRole == "client" ? (
+          {(isUserLoggedIn == "true" && userRole == "admin") ||
+          userRole == "client" ? (
             <>
               <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
-                <Link to="/user/dashboard">DashBoard</Link>
+                <Link to="/">DashBoard</Link>
               </li>
+            </>
+          ) : (
+            <></>
+          )}
+          {isUserLoggedIn == "true" && userRole == "client" ? (
+            <>
               <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
                 <Link to="/queries">Queries</Link>
               </li>
@@ -48,9 +56,6 @@ function Navbar() {
           )}
           {isUserLoggedIn == "true" && userRole == "admin" ? (
             <>
-              <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
-                <Link to="/admin/dashboard">Admin DashBoard</Link>
-              </li>
               <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
                 <Link to="/all-queries">All Queries</Link>
               </li>
