@@ -36,7 +36,7 @@ function LoginPage() {
           <img src={cus} />
         </div>
         <div className="w-1/2 p-4 flex flex-col m-auto gap-5">
-          <h1 className="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl dark:text-white">
+          <h1 className="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl">
             Sign in to{" "}
             <mark className="px-2 text-white bg-blue-600 rounded dark:bg-blue-500 align-middle">
               Raise Your Problem

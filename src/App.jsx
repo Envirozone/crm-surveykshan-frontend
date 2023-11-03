@@ -9,6 +9,7 @@ import AdminDashboard from "./page/AdminDashboard";
 import Denied from "./page/Denied";
 import PageNotFound from "./page/PageNotFound";
 import UserDashBoard from "./page/UserDashBoard";
+import QueryInfo from "./page/QueryInfo";
 
 function App() {
   let isUserLoggedIn = localStorage.getItem("isLoggedIn");
@@ -31,6 +32,7 @@ function App() {
         <Route path="*" element={<PageNotFound />}></Route>
 
         <Route element={<RequireAuth allowRole={["client"]} />}>
+          <Route path="/queries/:id" element={<QueryInfo />}></Route>
           <Route path="/queries" element={<Queries />}></Route>
           <Route path="/addQuery" element={<AddQuery />}></Route>
         </Route>

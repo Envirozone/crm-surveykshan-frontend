@@ -45,7 +45,7 @@ function Navbar() {
           {isUserLoggedIn == "true" && userRole == "client" ? (
             <>
               <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
-                <Link to="/queries">Queries</Link>
+                <Link to="/queries">All Queries</Link>
               </li>
               <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
                 <Link to="/addQuery">Add Query</Link>
