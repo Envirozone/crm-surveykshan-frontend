@@ -27,7 +27,11 @@ function AddQuery() {
         setDescription("");
       }
     } catch (error) {
-      toast.error("Somthing Went Wrong, Please Try Again!!");
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error(error.message);
+      }
     }
   }
 

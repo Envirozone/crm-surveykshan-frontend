@@ -11,6 +11,7 @@ import PageNotFound from "./page/PageNotFound";
 import UserDashBoard from "./page/UserDashBoard";
 import QueryInfo from "./page/QueryInfo";
 import AdminAllQueryPage from "./page/AdminAllQueryPage";
+import AdminQueryInfo from "./page/AdminQueryInfo";
 
 function App() {
   let isUserLoggedIn = localStorage.getItem("isLoggedIn");
@@ -39,6 +40,7 @@ function App() {
         </Route>
         <Route element={<RequireAuth allowRole={["admin"]} />}>
           <Route path="/all-queries" element={<AdminAllQueryPage />}></Route>
+          <Route path="/all-queries/:id" element={<AdminQueryInfo />}></Route>
         </Route>
         {/* Example to add route for both user and admin in future  */}
         {/* <Route element={<RequireAuth allowRole={["client", "admin"]} />}>

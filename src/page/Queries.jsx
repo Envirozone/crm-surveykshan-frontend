@@ -27,14 +27,15 @@ function Queries() {
         });
       }
       if (res.status === 200) {
-        console.log(res);
         setAllQuery(res.data.ticketDataByStatus);
         setTotalQuery(res.data.length);
       }
     } catch (error) {
-      // setLoading(false);
-      // setError(true);
-      console.log(error.message);
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error(error.message);
+      }
     }
   }
   useEffect(() => {

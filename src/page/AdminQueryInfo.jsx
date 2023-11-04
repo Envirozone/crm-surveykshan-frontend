@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
-function QueryInfo() {
+function AdminQueryInfo() {
   const { id } = useParams();
   const [ticketId, setTicketId] = useState("");
   const [dateTime, setDateTime] = useState("");
@@ -32,7 +32,7 @@ function QueryInfo() {
       .then(async (result) => {
         if (result.isConfirmed) {
           const res = await axios.patch(
-            `${window.apiURL}/ticket/updateTicket/${id}1`,
+            `${window.apiURL}/ticket/updateTicket/${id}`,
             {
               payload,
             },
@@ -55,7 +55,7 @@ function QueryInfo() {
         }
       })
       .catch((error) => {
-        if (error.response) {
+        if (error.response.data.message) {
           Swal.fire(error.response.data.message);
         } else {
           Swal.fire(error.message);
@@ -105,7 +105,6 @@ function QueryInfo() {
         }
       );
       if (res.status === 200) {
-        toast.success("Your Message Successfully Send.");
         setMessage("");
         getData();
       }
@@ -200,13 +199,13 @@ function QueryInfo() {
         <div className="shadow-lg mt-5 border border-blue-100 rounded-md p-5 flex gap-4 flex-col">
           <div className="flex gap-3">
             <h2 className="text-white bg-blue-500 font-medium text-center rounded-md text-xl px-2 py-1 mb-2">
-              Query Title :-
+              Query Title
             </h2>
             <h1 className="text-xl font-medium">{title}</h1>
           </div>
           <div className="flex gap-3">
             <h2 className="text-white bg-blue-500 font-medium text-center rounded-md text-xl px-2 py-1 mb-2">
-              Query Description :-
+              Query Description
             </h2>
             <h1 className="text-xl font-medium">{description}</h1>
           </div>
@@ -214,13 +213,13 @@ function QueryInfo() {
       </div>
 
       {/* All Message Section  */}
-      <div className="shadow-lg p-2 rounded-lg mb-8 border">
+      <div className="shadow-lg p-4 rounded-lg mb-8 border">
         {allMessage.length ? (
           allMessage.map((item) => {
             return (
               <div
                 key={item._id}
-                className="p-4 bg-blue-400 w-1/2 block border rounded-md relative mb-2"
+                className="p-4 bg-green-400 w-1/2 block border rounded-md relative mb-4 border-black"
               >
                 <div
                   className="text-xl font-bold mb-2"
@@ -228,7 +227,7 @@ function QueryInfo() {
                 >
                   <h1 className="mb-6">{item.message}</h1>
                 </div>
-                <div className="flex absolute bottom-2 right-2">
+                <div className="flex absolute bottom-2 left-96">
                   <p className="font-medium bg-white border rounded-md px-1 py-.5">
                     {item.send_by} |{" "}
                     {`${item.message_time.split("T")[0]}, ${
@@ -290,4 +289,4 @@ function QueryInfo() {
   );
 }
 
-export default QueryInfo;
+export default AdminQueryInfo;

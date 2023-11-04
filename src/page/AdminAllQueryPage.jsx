@@ -35,14 +35,15 @@ function AdminAllQueryPage() {
         res = await axios(`${window.apiURL}/admin/getAllTicket`);
       }
       if (res.status === 200) {
-        // console.log(res);
         setAllQuery(res.data.ticketDataByStatus);
         setTotalQuery(res.data.length);
       }
     } catch (error) {
-      // setLoading(false);
-      // setError(true);
-      console.log(error.message);
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error(error.message);
+      }
     }
   }
   useEffect(() => {
@@ -269,7 +270,7 @@ function AdminAllQueryPage() {
 
                     <td className="px-6 py-4 text-left">
                       <Link
-                        to={`/queries/${query._id}`}
+                        to={`/all-queries/${query._id}`}
                         className="font-medium text-blue-600  hover:underline"
                       >
                         More Info
