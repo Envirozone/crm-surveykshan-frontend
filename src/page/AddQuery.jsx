@@ -33,7 +33,7 @@ function AddQuery() {
 
   return (
     <div>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-4 flex justify-between p-2">
+      <div className="relative border border-blue-400 overflow-x-auto shadow-md sm:rounded-lg m-4 flex justify-between p-2">
         <h2 className="text-4xl font-extrabold">Add Query</h2>
         <Link to="/queries">
           <button

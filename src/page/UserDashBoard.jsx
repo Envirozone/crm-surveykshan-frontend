@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function UserDashBoard() {
   const data = localStorage.getItem("data");
@@ -58,94 +58,110 @@ function UserDashBoard() {
           </h2>
         </div>
       </div>
-      <div className="w-1/2 mr-10 shadow-lg mt-11 p-7 flex items-center">
+      <div className="w-1/2 mr-10 shadow-lg mt-11 p-7 flex justify-center items-center border border-blue-300 rounded-lg">
         <div className="flex flex-col">
           <div>
             <div className="flex gap-5 justify-between">
               <div>
-                <p className="font-medium text-gray-600 text-2xl">UserName: </p>
+                <p className="font-medium text-black-600 text-2xl">
+                  UserName:{" "}
+                </p>
               </div>
               <div>
-                <p className="text-2xl font-bold">{objData.username}</p>
+                <p className="text-2xl font-bold text-blue-300">
+                  {objData.username}
+                </p>
               </div>
             </div>
-            <div className="my-2 bg-black" style={{ height: "1px" }}></div>
+            <div className="my-2 bg-blue-300" style={{ height: "1px" }}></div>
           </div>
 
           <div>
             <div className="flex gap-5 justify-between">
               <div>
-                <p className="font-medium text-gray-600 text-2xl">
+                <p className="font-medium text-black-600 text-2xl">
                   Industry Name:{" "}
                 </p>
               </div>
               <div>
-                <p className="text-2xl font-bold">{objData.industry}</p>
+                <p className="text-2xl font-bold text-blue-300">
+                  {objData.industry}
+                </p>
               </div>
             </div>
-            <div className="my-2 bg-black" style={{ height: "1px" }}></div>
+            <div className="my-2 bg-blue-300" style={{ height: "1px" }}></div>
           </div>
 
           <div>
             <div className="flex gap-5 justify-between">
               <div>
-                <p className="font-medium text-gray-600 text-2xl">Email: </p>
+                <p className="font-medium text-black-600 text-2xl">Email: </p>
               </div>
               <div>
-                <p className="text-2xl font-bold">{objData.email}</p>
+                <p className="text-2xl font-bold text-blue-300">
+                  {objData.email}
+                </p>
               </div>
             </div>
-            <div className="my-2 bg-black" style={{ height: "1px" }}></div>
+            <div className="my-2 bg-blue-300" style={{ height: "1px" }}></div>
           </div>
 
           <div>
             <div className="flex gap-5 justify-between">
               <div>
-                <p className="font-medium text-gray-600 text-2xl">
+                <p className="font-medium text-black-600 text-2xl">
                   Phone Number:{" "}
                 </p>
               </div>
               <div>
-                <p className="text-2xl font-bold">{objData.phone}</p>
+                <p className="text-2xl font-bold text-blue-300">
+                  {objData.phone}
+                </p>
               </div>
             </div>
-            <div className="my-2 bg-black" style={{ height: "1px" }}></div>
+            <div className="my-2 bg-blue-300" style={{ height: "1px" }}></div>
           </div>
 
           <div>
             <div className="flex gap-5 justify-between">
               <div>
-                <p className="font-medium text-gray-600 text-2xl">State: </p>
+                <p className="font-medium text-black-600 text-2xl">State: </p>
               </div>
               <div>
-                <p className="text-2xl font-bold">{objData.state}</p>
+                <p className="text-2xl font-bold text-blue-300">
+                  {objData.state}
+                </p>
               </div>
             </div>
-            <div className="my-2 bg-black" style={{ height: "1px" }}></div>
+            <div className="my-2 bg-blue-300" style={{ height: "1px" }}></div>
           </div>
 
           <div>
             <div className="flex justify-between gap-5">
               <div>
-                <p className="font-medium text-gray-600 text-2xl">City: </p>
+                <p className="font-medium text-black-600 text-2xl ">City: </p>
               </div>
               <div>
-                <p className="text-2xl font-bold">{objData.city}</p>
+                <p className="text-2xl font-bold text-blue-300">
+                  {objData.city}
+                </p>
               </div>
             </div>
-            <div className="my-2 bg-black" style={{ height: "1px" }}></div>
+            <div className="my-2 bg-blue-300" style={{ height: "1px" }}></div>
           </div>
 
           <div>
             <div className="flex justify-between gap-5">
               <div>
-                <p className="font-medium text-gray-600 text-2xl">Address: </p>
+                <p className="font-medium text-black-600 text-2xl">Address: </p>
               </div>
               <div>
-                <p className="text-2xl font-bold">{objData.address}</p>
+                <p className="text-2xl font-bold text-blue-300">
+                  {objData.address}
+                </p>
               </div>
             </div>
-            <div className="my-2 bg-black" style={{ height: "1px" }}></div>
+            <div className="my-2 bg-blue-300" style={{ height: "1px" }}></div>
           </div>
         </div>
       </div>
