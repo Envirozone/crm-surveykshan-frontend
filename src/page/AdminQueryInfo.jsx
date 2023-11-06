@@ -14,6 +14,7 @@ function AdminQueryInfo() {
   const [description, setDescription] = useState("");
   const [message, setMessage] = useState("");
   const [allMessage, setAllMessage] = useState([]);
+  const [file, setFile] = useState("");
 
   const getData = async () => {
     try {
@@ -135,29 +136,23 @@ function AdminQueryInfo() {
         <div className="flex justify-between items-center">
           {/* Indus Info  */}
           <div>
-            <h2 className="text-xl font-bold mb-3">
-              Ticket Id :{" "}
-              <span
-                className="text-white bg-orange-500 font-medium rounded-md text-xl text-center px-2 py-1"
-                style={{ marginLeft: "66px" }}
-              >
+            <h2 className="text-xl font-bold mb-3 bg-slate-300 p-1 rounded shadow">
+              Ticket Id :
+              <span className="text-blue-700 font-bold rounded-md text-xl text-center px-2 py-1">
                 {ticketId}
-              </span>{" "}
+              </span>
             </h2>
-            <h2 className="text-xl font-bold mb-3">
-              Date & Time :{" "}
-              <span
-                className="text-white bg-orange-500 font-medium rounded-md text-xl text-center px-2 py-1 ml-8"
-                style={{ marginLeft: "29px" }}
-              >
+            <h2 className="text-xl font-bold mb-3 bg-slate-300 p-1 rounded shadow">
+              Date & Time :
+              <span className="text-blue-700 font-bold rounded-md text-xl text-center px-2 py-1">
                 {dateTime}
-              </span>{" "}
+              </span>
             </h2>
-            <h2 className="text-xl font-bold mb-3">
-              Industry Name :{" "}
-              <span className="text-white bg-orange-500 font-medium rounded-md text-xl text-center px-2 py-1 ml-2">
+            <h2 className="text-xl font-bold mb-3 bg-slate-300 p-1 rounded shadow">
+              Industry Name :
+              <span className="text-blue-700 font-bold rounded-md text-xl text-center px-2 py-1">
                 {industryName}
-              </span>{" "}
+              </span>
             </h2>
           </div>
 
@@ -186,7 +181,7 @@ function AdminQueryInfo() {
             <div className="text-white font-medium rounded-lg text-md text-center px-8 py-2.5 mr-2 mb-2 focus:outline-none">
               <select
                 onChange={handleQueryStatus}
-                className="bg-gray-50 border border-black text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-black text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               >
                 <option selected>Change Query Status</option>
                 <option value="pending">Pending</option>
@@ -200,13 +195,13 @@ function AdminQueryInfo() {
         {/* Bottom Data  */}
         <div className="shadow-lg mt-5 border border-blue-100 rounded-md p-5 flex gap-4 flex-col">
           <div className="flex gap-3">
-            <h2 className="text-white bg-blue-500 font-medium text-center rounded-md text-xl px-2 py-1 mb-2">
+            <h2 className="text-black font-bold bg-gray-200 text-center rounded-md text-xl px-2 py-1 mb-2">
               Query Title
             </h2>
             <h1 className="text-xl font-medium">{title}</h1>
           </div>
           <div className="flex gap-3">
-            <h2 className="text-white bg-blue-500 font-medium text-center rounded-md text-xl px-2 py-1 mb-2">
+            <h2 className="text-black font-bold bg-gray-200 text-center rounded-md text-xl px-2 py-1 mb-2">
               Query Description
             </h2>
             <h1 className="text-xl font-medium">{description}</h1>
@@ -219,6 +214,9 @@ function AdminQueryInfo() {
         className="shadow-lg p-4 rounded-lg mb-8 border"
         style={{ backgroundColor: "#EFEAE2" }}
       >
+        <div className="text-center font-bold mb-7 text-3xl bg-green-400 p-1 shadow rounded">
+          Feel Free To Chat With Us
+        </div>
         {allMessage.length ? (
           allMessage.map((item) => {
             return item.send_by === "surveykshan" ? (
@@ -302,12 +300,27 @@ function AdminQueryInfo() {
             <textarea
               id="message"
               rows={4}
-              className="block p-2.5 w-full text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 mb-8"
+              className="block p-2.5 w-full text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 mb-4"
               placeholder="Write your problem here..."
               required
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
+
+            <label
+              className="block mb-2 text-lg font-bold text-gray-900"
+              htmlFor="file_input"
+            >
+              Upload File
+            </label>
+            <input
+              className="block p-2.5 mb-8 w-full text-md text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"
+              id="file_input"
+              type="file"
+              value={file}
+              onChange={(e) => setFile(e.target.value)}
+            />
+
             <button
               type="submit"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full"

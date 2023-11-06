@@ -59,6 +59,9 @@ function Navbar() {
               <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
                 <Link to="/all-queries">All Queries</Link>
               </li>
+              <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
+                <Link to="/adminaddquery">Add Query</Link>
+              </li>
             </>
           ) : (
             <></>

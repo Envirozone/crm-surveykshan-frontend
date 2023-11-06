@@ -21,8 +21,8 @@ function AdminDashboard() {
     })();
   }, []);
   return (
-    <div className="flex gap-10">
-      <div className="mt-16 flex flex-wrap justify-center items-center gap-16 w-1/2">
+    <div className="flex gap-10 justify-center">
+      <div className="mt-16 flex flex-wrap justify-center items-center gap-16">
         <div className="h-48 w-48 bg-red-600 rounded-lg shadow-md shadow-black hover:shadow-lg hover:shadow-black cursor-pointer flex justify-center items-center flex-col">
           <span className="material-symbols-outlined text-5xl">
             pending_actions
@@ -55,113 +55,6 @@ function AdminDashboard() {
           <h2 className="text-5xl text-center font-bold">
             {statusData.inProgressTicketsCounts}
           </h2>
-        </div>
-      </div>
-      <div className="w-1/2 mr-10 shadow-lg mt-11 p-7 flex justify-center items-center border border-blue-300 rounded-lg">
-        <div className="flex flex-col">
-          <div>
-            <div className="flex gap-5 justify-between">
-              <div>
-                <p className="font-medium text-black-600 text-2xl">
-                  UserName:{" "}
-                </p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-blue-300">
-                  {objData.username}
-                </p>
-              </div>
-            </div>
-            <div className="my-2 bg-blue-300" style={{ height: "1px" }}></div>
-          </div>
-
-          <div>
-            <div className="flex gap-5 justify-between">
-              <div>
-                <p className="font-medium text-black-600 text-2xl">
-                  Industry Name:{" "}
-                </p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-blue-300">
-                  {objData.industry}
-                </p>
-              </div>
-            </div>
-            <div className="my-2 bg-blue-300" style={{ height: "1px" }}></div>
-          </div>
-
-          <div>
-            <div className="flex gap-5 justify-between">
-              <div>
-                <p className="font-medium text-black-600 text-2xl">Email: </p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-blue-300">
-                  {objData.email}
-                </p>
-              </div>
-            </div>
-            <div className="my-2 bg-blue-300" style={{ height: "1px" }}></div>
-          </div>
-
-          <div>
-            <div className="flex gap-5 justify-between">
-              <div>
-                <p className="font-medium text-black-600 text-2xl">
-                  Phone Number:{" "}
-                </p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-blue-300">
-                  {objData.phone}
-                </p>
-              </div>
-            </div>
-            <div className="my-2 bg-blue-300" style={{ height: "1px" }}></div>
-          </div>
-
-          <div>
-            <div className="flex gap-5 justify-between">
-              <div>
-                <p className="font-medium text-black-600 text-2xl">State: </p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-blue-300">
-                  {objData.state}
-                </p>
-              </div>
-            </div>
-            <div className="my-2 bg-blue-300" style={{ height: "1px" }}></div>
-          </div>
-
-          <div>
-            <div className="flex justify-between gap-5">
-              <div>
-                <p className="font-medium text-black-600 text-2xl ">City: </p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-blue-300">
-                  {objData.city}
-                </p>
-              </div>
-            </div>
-            <div className="my-2 bg-blue-300" style={{ height: "1px" }}></div>
-          </div>
-
-          <div>
-            <div className="flex justify-between gap-5">
-              <div>
-                <p className="font-medium text-black-600 text-2xl">Address: </p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-blue-300">
-                  {objData.address}
-                </p>
-              </div>
-            </div>
-            <div className="my-2 bg-blue-300" style={{ height: "1px" }}></div>
-          </div>
         </div>
       </div>
     </div>

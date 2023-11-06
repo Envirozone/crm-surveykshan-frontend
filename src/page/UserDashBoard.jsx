@@ -61,14 +61,12 @@ function UserDashBoard() {
       <div className="w-1/2 mr-10 shadow-lg mt-11 p-7 flex justify-center items-center border border-blue-300 rounded-lg">
         <div className="flex flex-col">
           <div>
-            <div className="flex gap-5 justify-between">
+            <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">
               <div>
-                <p className="font-medium text-black-600 text-2xl">
-                  UserName:{" "}
-                </p>
+                <p className="font-bold text-black-600 text-2xl">UserName: </p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-blue-300">
+                <p className="text-2xl font-medium text-blue-700">
                   {objData.username}
                 </p>
               </div>
@@ -77,14 +75,14 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 justify-between">
+            <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">
               <div>
                 <p className="font-medium text-black-600 text-2xl">
                   Industry Name:{" "}
                 </p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-blue-300">
+                <p className="text-2xl font-bold text-blue-700">
                   {objData.industry}
                 </p>
               </div>
@@ -93,12 +91,12 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 justify-between">
+            <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">
               <div>
                 <p className="font-medium text-black-600 text-2xl">Email: </p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-blue-300">
+                <p className="text-2xl font-bold text-blue-700">
                   {objData.email}
                 </p>
               </div>
@@ -107,14 +105,14 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 justify-between">
+            <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">
               <div>
                 <p className="font-medium text-black-600 text-2xl">
                   Phone Number:{" "}
                 </p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-blue-300">
+                <p className="text-2xl font-bold text-blue-700">
                   {objData.phone}
                 </p>
               </div>
@@ -123,12 +121,12 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 justify-between">
+            <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">
               <div>
                 <p className="font-medium text-black-600 text-2xl">State: </p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-blue-300">
+                <p className="text-2xl font-bold text-blue-700">
                   {objData.state}
                 </p>
               </div>
@@ -137,12 +135,12 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex justify-between gap-5">
+            <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">
               <div>
                 <p className="font-medium text-black-600 text-2xl ">City: </p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-blue-300">
+                <p className="text-2xl font-bold text-blue-700">
                   {objData.city}
                 </p>
               </div>
@@ -151,12 +149,12 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex justify-between gap-5">
+            <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">
               <div>
                 <p className="font-medium text-black-600 text-2xl">Address: </p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-blue-300">
+                <p className="text-2xl font-bold text-blue-700">
                   {objData.address}
                 </p>
               </div>
