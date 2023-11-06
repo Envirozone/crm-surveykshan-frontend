@@ -15,54 +15,6 @@ function AdminQueryInfo() {
   const [message, setMessage] = useState("");
   const [allMessage, setAllMessage] = useState([]);
 
-  const handleCloseQuery = async () => {
-    const payload = {
-      status: "resolved",
-    };
-
-    Swal.fire({
-      title: "Query Resolved Confirmation",
-      text: "Are you sure want to close this query?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Resolved Query",
-    })
-      .then(async (result) => {
-        if (result.isConfirmed) {
-          const res = await axios.patch(
-            `${window.apiURL}/ticket/updateTicket/${id}`,
-            {
-              payload,
-            },
-            {
-              headers: {
-                Authorization: localStorage.getItem("accessToken"),
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          if (res?.status === 200) {
-            Swal.fire(
-              "Resolved!",
-              "Thank You To Raise Your Problem, Now Your Problem Is Resolved. 😊",
-              "success"
-            );
-            getData();
-          }
-        }
-      })
-      .catch((error) => {
-        if (error.response.data.message) {
-          Swal.fire(error.response.data.message);
-        } else {
-          Swal.fire(error.message);
-        }
-      });
-  };
-
   const getData = async () => {
     try {
       const res = await axios.get(`${window.apiURL}/ticket/${id}`, {
@@ -91,7 +43,7 @@ function AdminQueryInfo() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `${window.apiURL}/ticket/addMessage/${id}`,
+        `${window.apiURL}/admin/addMessageToTicketByTicketId/${id}`,
         {
           payload: {
             message,
@@ -115,6 +67,60 @@ function AdminQueryInfo() {
         toast.error(error.message);
       }
     }
+  };
+
+  const handleQueryStatus = async (e) => {
+    const queryStatus = e.target.value;
+
+    if (queryStatus === status) {
+      toast.error(`${queryStatus} Is Already Selected`);
+      return;
+    }
+
+    Swal.fire({
+      title: "Query Status Change Confirmation",
+      text: "Are you sure want to Change this query status?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Change Query Status",
+    })
+      .then(async (result) => {
+        if (result.isConfirmed) {
+          const res = await axios.patch(
+            `${window.apiURL}/admin/updateTicketById/${id}`,
+            {
+              payload: {
+                status: queryStatus,
+              },
+            },
+            {
+              headers: {
+                Authorization: localStorage.getItem("accessToken"),
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          if (res?.status === 200) {
+            Swal.fire(
+              "Resolved!",
+              "Query Status Successfully Changed. 😊😊",
+              "success"
+            );
+            setStatus(queryStatus);
+            getData();
+          }
+        }
+      })
+      .catch((error) => {
+        if (error.response.data.message) {
+          Swal.fire(error.response.data.message);
+        } else {
+          Swal.fire(error.message);
+        }
+      });
   };
 
   useEffect(() => {
@@ -157,41 +163,37 @@ function AdminQueryInfo() {
 
           {/* Status  */}
           <div>
-            <div
-              style={{
-                backgroundColor: `${
-                  status === "inProgress"
-                    ? "#FACC15"
-                    : status === "pending"
-                    ? "red"
-                    : "green"
-                }`,
-              }}
-              className="text-white font-medium rounded-lg text-md text-center px-8 py-2.5 mr-2 mb-2 focus:outline-none"
-            >
-              {status === "inProgress"
-                ? "In Progress"
-                : status === "pending"
-                ? "Pending"
-                : "Resolved"}
+            <div>
+              <div
+                style={{
+                  backgroundColor: `${
+                    status === "inProgress"
+                      ? "#FACC15"
+                      : status === "pending"
+                      ? "red"
+                      : "green"
+                  }`,
+                }}
+                className="text-white font-medium rounded-lg text-md text-center px-8 py-2.5 mr-2 mb-2 focus:outline-none"
+              >
+                {status === "inProgress"
+                  ? "In Progress"
+                  : status === "pending"
+                  ? "Pending"
+                  : "Resolved"}
+              </div>
             </div>
-            {status === "pending" ? (
-              <button
-                onClick={handleCloseQuery}
-                className="text-white bg-violet-600 hover:bg-violet-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md text-center px-8 py-2.5 mr-2 mb-2 focus:outline-none border-black border-2"
+            <div className="text-white font-medium rounded-lg text-md text-center px-8 py-2.5 mr-2 mb-2 focus:outline-none">
+              <select
+                onChange={handleQueryStatus}
+                className="bg-gray-50 border border-black text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
-                Close Query
-              </button>
-            ) : status === "inProgress" ? (
-              <button
-                onClick={handleCloseQuery}
-                className="text-white bg-violet-600 hover:bg-violet-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md text-center px-8 py-2.5 mr-2 mb-2 focus:outline-none"
-              >
-                Close Query
-              </button>
-            ) : (
-              <></>
-            )}
+                <option selected>Change Query Status</option>
+                <option value="pending">Pending</option>
+                <option value="inProgress">In Progress</option>
+                <option value="resolved">Resolved</option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -213,27 +215,57 @@ function AdminQueryInfo() {
       </div>
 
       {/* All Message Section  */}
-      <div className="shadow-lg p-4 rounded-lg mb-8 border">
+      <div
+        className="shadow-lg p-4 rounded-lg mb-8 border"
+        style={{ backgroundColor: "#EFEAE2" }}
+      >
         {allMessage.length ? (
           allMessage.map((item) => {
-            return (
-              <div
-                key={item._id}
-                className="p-4 bg-green-400 w-1/2 block border rounded-md relative mb-4 border-black"
-              >
+            return item.send_by === "surveykshan" ? (
+              <div className="flex flex-row-reverse" key={item._id}>
                 <div
-                  className="text-xl font-bold mb-2"
-                  style={{ wordWrap: "break-word" }}
+                  className="p-4 mr-2 w-1/2 block border rounded-md relative mb-4 border-black"
+                  style={{ width: "70%", backgroundColor: "#D9FDD3" }}
                 >
-                  <h1 className="mb-6">{item.message}</h1>
+                  <div
+                    className="text-xl font-bold mb-2"
+                    style={{ wordWrap: "break-word" }}
+                  >
+                    <h1 className="mb-6">{item.message}</h1>
+                  </div>
+                  <div className="flex absolute bottom-2 right-2">
+                    <p className="font-medium bg-white border rounded-md px-1 py-.5">
+                      {item.send_by} |{" "}
+                      {`${item.message_time.split("T")[0]}, ${
+                        item.message_time.split("T")[1].split(".")[0]
+                      }`}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex absolute bottom-2 left-96">
-                  <p className="font-medium bg-white border rounded-md px-1 py-.5">
-                    {item.send_by} |{" "}
-                    {`${item.message_time.split("T")[0]}, ${
-                      item.message_time.split("T")[1].split(".")[0]
-                    }`}
-                  </p>
+              </div>
+            ) : (
+              <div className="flex" key={item._id}>
+                <div
+                  className="p-4 block bg-white border rounded-md relative mb-4 border-black"
+                  style={{ width: "70%" }}
+                >
+                  <div
+                    className="text-xl font-bold mb-2"
+                    style={{ wordWrap: "break-word" }}
+                  >
+                    <h1 className="mb-6">{item.message}</h1>
+                  </div>
+                  <div className="flex absolute bottom-2 right-2">
+                    <p
+                      className="font-medium border rounded-md px-1 py-.5"
+                      style={{ backgroundColor: "#D9FDD3" }}
+                    >
+                      {item.send_by} |{" "}
+                      {`${item.message_time.split("T")[0]}, ${
+                        item.message_time.split("T")[1].split(".")[0]
+                      }`}
+                    </p>
+                  </div>
                 </div>
               </div>
             );

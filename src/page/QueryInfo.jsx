@@ -32,7 +32,7 @@ function QueryInfo() {
       .then(async (result) => {
         if (result.isConfirmed) {
           const res = await axios.patch(
-            `${window.apiURL}/ticket/updateTicket/${id}1`,
+            `${window.apiURL}/ticket/updateTicket/${id}`,
             {
               payload,
             },
@@ -176,17 +176,10 @@ function QueryInfo() {
                 ? "Pending"
                 : "Resolved"}
             </div>
-            {status === "pending" ? (
+            {status === "pending" || status === "inProgress" ? (
               <button
                 onClick={handleCloseQuery}
                 className="text-white bg-violet-600 hover:bg-violet-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md text-center px-8 py-2.5 mr-2 mb-2 focus:outline-none border-black border-2"
-              >
-                Close Query
-              </button>
-            ) : status === "inProgress" ? (
-              <button
-                onClick={handleCloseQuery}
-                className="text-white bg-violet-600 hover:bg-violet-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md text-center px-8 py-2.5 mr-2 mb-2 focus:outline-none"
               >
                 Close Query
               </button>
@@ -214,27 +207,59 @@ function QueryInfo() {
       </div>
 
       {/* All Message Section  */}
-      <div className="shadow-lg p-2 rounded-lg mb-8 border">
+      <div
+        className="shadow-lg p-4 rounded-lg mb-8 border"
+        style={{ backgroundColor: "#EFEAE2" }}
+      >
         {allMessage.length ? (
           allMessage.map((item) => {
-            return (
-              <div
-                key={item._id}
-                className="p-4 bg-blue-400 w-1/2 block border rounded-md relative mb-2"
-              >
+            return item.send_by === "surveykshan" ? (
+              <div className="flex">
                 <div
-                  className="text-xl font-bold mb-2"
-                  style={{ wordWrap: "break-word" }}
+                  key={item._id}
+                  className="p-4 mr-10 bg-white block border rounded-md relative mb-4 border-black"
+                  style={{ width: "70%" }}
                 >
-                  <h1 className="mb-6">{item.message}</h1>
+                  <div
+                    className="text-xl font-bold mb-2"
+                    style={{ wordWrap: "break-word" }}
+                  >
+                    <h1 className="mb-6">{item.message}</h1>
+                  </div>
+                  <div className="flex absolute bottom-2 right-2">
+                    <p
+                      className="font-medium border rounded-md px-1 py-.5"
+                      style={{ backgroundColor: "#D9FDD3" }}
+                    >
+                      {item.send_by} |{" "}
+                      {`${item.message_time.split("T")[0]}, ${
+                        item.message_time.split("T")[1].split(".")[0]
+                      }`}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex absolute bottom-2 right-2">
-                  <p className="font-medium bg-white border rounded-md px-1 py-.5">
-                    {item.send_by} |{" "}
-                    {`${item.message_time.split("T")[0]}, ${
-                      item.message_time.split("T")[1].split(".")[0]
-                    }`}
-                  </p>
+              </div>
+            ) : (
+              <div className="flex flex-row-reverse">
+                <div
+                  key={item._id}
+                  className="p-4 block border rounded-md relative mb-4 border-black"
+                  style={{ width: "70%", backgroundColor: "#D9FDD3" }}
+                >
+                  <div
+                    className="text-xl font-bold mb-2"
+                    style={{ wordWrap: "break-word" }}
+                  >
+                    <h1 className="mb-6">{item.message}</h1>
+                  </div>
+                  <div className="flex absolute bottom-2 right-2">
+                    <p className="font-medium bg-white border rounded-md px-1 py-.5">
+                      {item.send_by} |{" "}
+                      {`${item.message_time.split("T")[0]}, ${
+                        item.message_time.split("T")[1].split(".")[0]
+                      }`}
+                    </p>
+                  </div>
                 </div>
               </div>
             );
