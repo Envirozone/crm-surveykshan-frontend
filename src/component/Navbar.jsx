@@ -6,12 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 
 function Navbar() {
+  // Make States For Displaying Menu Bar
   const [nav, setNav] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let isUserLoggedIn = localStorage.getItem("isLoggedIn");
   let userRole = localStorage.getItem("role");
 
+  // Handle Logout Button
   async function logout() {
     await dispatch({ type: "LOGOUT" });
     window.location.reload(true);
@@ -33,6 +35,7 @@ function Navbar() {
       className="flex items-center justify-between pl-10 pr-10 relative w-full"
       style={{ height: "10vh", backgroundColor: "#04093D" }}
     >
+      {/* Applying Image in Nav Bar  */}
       <div className="flex items-center justify-evenly">
         <div className="w-40">
           <img src={logo} alt="surveykshan" />
@@ -42,9 +45,10 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Menu Bar For Small Screen  */}
+      {/* Applying Menu Bar Icon For Small Screen  */}
       {(isUserLoggedIn == "true" && userRole == "admin") ||
-      userRole == "client" ? (
+      userRole == "client" ||
+      userRole === "partner" ? (
         <div
           className="md:hidden text-white cursor-pointer"
           onClick={handleMenuBar}
@@ -55,7 +59,7 @@ function Navbar() {
         <></>
       )}
 
-      {/* SideBar for small screen */}
+      {/* Adding SideBar for small screen */}
       {nav === true ? (
         <div className="z-50 w-auto h-auto bg-blue-600 top-14 absolute right-4 lg:right-8 p-2 m-2 rounded-md shadow">
           <div className="relative p-6">
@@ -66,8 +70,10 @@ function Navbar() {
             </div> */}
             <div>
               <ul className="flex flex-col items-center justify-center text-white gap-5 font-bold text-xl">
+                {/* Print Dashboard Page For All type of user - Small Screen  */}
                 {(isUserLoggedIn == "true" && userRole == "admin") ||
-                userRole == "client" ? (
+                userRole == "client" ||
+                userRole === "partner" ? (
                   <>
                     <li
                       onClick={() => setNav(false)}
@@ -79,6 +85,7 @@ function Navbar() {
                 ) : (
                   <></>
                 )}
+                {/* Print Some Pages on Navbar Only For Client Usertype - Small Screen  */}
                 {isUserLoggedIn == "true" && userRole == "client" ? (
                   <>
                     <li
@@ -97,6 +104,7 @@ function Navbar() {
                 ) : (
                   <></>
                 )}
+                {/* Print Some Pages on Navbar Only For Admin Usertype - Small Screen  */}
                 {isUserLoggedIn == "true" && userRole == "admin" ? (
                   <>
                     <li
@@ -115,8 +123,29 @@ function Navbar() {
                 ) : (
                   <></>
                 )}
+                {/* Print Some Pages on Navbar Only For Partner Usertype - Small Screen  */}
+                {isUserLoggedIn == "true" && userRole == "partner" ? (
+                  <>
+                    <li
+                      onClick={() => setNav(false)}
+                      className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded"
+                    >
+                      <Link to="/partner-all-queries">All Queries</Link>
+                    </li>
+                    <li
+                      onClick={() => setNav(false)}
+                      className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded"
+                    >
+                      <Link to="/partneraddquery">Add Query</Link>
+                    </li>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {/* Print Some Pages on Navbar for all types of Usertype - Small Screen  */}
                 {(isUserLoggedIn == "true" && userRole == "admin") ||
-                userRole == "client" ? (
+                userRole == "client" ||
+                userRole === "partner" ? (
                   <>
                     <li
                       onClick={() => setNav(false)}
@@ -136,11 +165,13 @@ function Navbar() {
         <></>
       )}
 
-      {/* Menu Bar For Big Screen  */}
+      {/* Nav Bar For Big Screen  */}
       <div className="hidden md:block text-white">
         <ul className="flex items-center justify-center text-white gap-5 pl-5 font-bold text-xl">
+          {/* Print Dashboard Page For All type of user - Big Screen  */}
           {(isUserLoggedIn == "true" && userRole == "admin") ||
-          userRole == "client" ? (
+          userRole == "client" ||
+          userRole === "partner" ? (
             <>
               <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
                 <Link to="/">DashBoard</Link>
@@ -149,6 +180,7 @@ function Navbar() {
           ) : (
             <></>
           )}
+          {/* Print Dashboard Page Only For client usertype - Big Screen  */}
           {isUserLoggedIn == "true" && userRole == "client" ? (
             <>
               <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
@@ -161,6 +193,7 @@ function Navbar() {
           ) : (
             <></>
           )}
+          {/* Print Dashboard Page Only For admin usertype - Big Screen  */}
           {isUserLoggedIn == "true" && userRole == "admin" ? (
             <>
               <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
@@ -173,8 +206,23 @@ function Navbar() {
           ) : (
             <></>
           )}
+          {/* Print Dashboard Page Only For Partner usertype - Big Screen  */}
+          {isUserLoggedIn == "true" && userRole == "partner" ? (
+            <>
+              <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
+                <Link to="/partner-all-queries">All Queries</Link>
+              </li>
+              <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
+                <Link to="/partneraddquery">Add Query</Link>
+              </li>
+            </>
+          ) : (
+            <></>
+          )}
+          {/* Print Dashboard Page For All type of user - Big Screen  */}
           {(isUserLoggedIn == "true" && userRole == "admin") ||
-          userRole == "client" ? (
+          userRole == "client" ||
+          userRole === "partner" ? (
             <>
               <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
                 <Link onClick={logout}>Logout</Link>

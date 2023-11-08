@@ -11,17 +11,28 @@ import AddQuery from "../page/AddQuery";
 import AdminAllQueryPage from "../page/AdminAllQueryPage";
 import AdminQueryInfo from "../page/AdminQueryInfo";
 import AdminAddQuery from "../page/AdminAddQuery";
+import PartnerDashboard from "../page/PartnerDashboard";
+import PartnerAddQuery from "../page/PartnerAddQuery";
+import PartnerAllQuery from "../page/PartnerAllQuery";
+import PartnerQueryInfo from "../page/PartnerQueryInfo";
 const AllRoutes = () => {
   let isUserLoggedIn = localStorage.getItem("isLoggedIn");
   let userRole = localStorage.getItem("role");
   return (
     <Routes>
       {(isUserLoggedIn === "true" && userRole === "client") ||
-      userRole === "admin" ? (
+      userRole === "admin" ||
+      userRole === "partner" ? (
         <Route
           path="/"
           element={
-            userRole === "admin" ? <AdminDashboard /> : <UserDashBoard />
+            userRole === "admin" ? (
+              <AdminDashboard />
+            ) : userRole === "partner" ? (
+              <PartnerDashboard />
+            ) : (
+              <UserDashBoard />
+            )
           }
         />
       ) : (
@@ -39,6 +50,17 @@ const AllRoutes = () => {
         <Route path="/all-queries" element={<AdminAllQueryPage />}></Route>
         <Route path="/all-queries/:id" element={<AdminQueryInfo />}></Route>
         <Route path="/adminaddQuery" element={<AdminAddQuery />}></Route>
+      </Route>
+      <Route element={<RequireAuth allowRole={["partner"]} />}>
+        <Route
+          path="/partner-all-queries"
+          element={<PartnerAllQuery />}
+        ></Route>
+        <Route
+          path="/partner-all-queries/:id"
+          element={<PartnerQueryInfo />}
+        ></Route>
+        <Route path="/partneraddquery" element={<PartnerAddQuery />}></Route>
       </Route>
       {/* Example to add route for both user and admin in future  */}
       {/* <Route element={<RequireAuth allowRole={["client", "admin"]} />}>
