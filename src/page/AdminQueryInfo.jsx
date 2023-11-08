@@ -124,6 +124,35 @@ function AdminQueryInfo() {
       });
   };
 
+  useEffect(() => {});
+
+  // Updating Message Section After 5 Sec
+  const updateMessagePart = async () => {
+    try {
+      const res = await axios.get(`${window.apiURL}/ticket/${id}`, {
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+          "Content-Type": "application/json",
+        },
+      });
+      setAllMessage(res?.data[0]?.messages);
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error(error.message);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const interval = setInterval(updateMessagePart, 5000);
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(interval);
+  }, []);
+  // Updating Message Section After 5 Sec
+
   useEffect(() => {
     getData();
   }, [status]);
@@ -181,9 +210,10 @@ function AdminQueryInfo() {
             <div className="text-white font-medium rounded-lg text-md text-center px-8 py-2.5 mr-2 mb-2 focus:outline-none">
               <select
                 onChange={handleQueryStatus}
+                defaultValue=""
                 className="bg-gray-50 border border-black text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               >
-                <option selected>Change Query Status</option>
+                <option value="">Change Query Status</option>
                 <option value="pending">Pending</option>
                 <option value="inProgress">In Progress</option>
                 <option value="resolved">Resolved</option>

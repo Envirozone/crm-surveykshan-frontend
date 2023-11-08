@@ -119,6 +119,34 @@ function QueryInfo() {
     }
   };
 
+  // Updating Message Section After 5 Sec
+  const updateMessagePart = async () => {
+    try {
+      const res = await axios.get(`${window.apiURL}/ticket/${id}`, {
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+          "Content-Type": "application/json",
+        },
+      });
+      setAllMessage(res?.data[0]?.messages);
+    } catch (error) {
+      if (error?.response) {
+        toast.error(error?.response?.data?.message);
+      } else {
+        toast.error(error.message);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const interval = setInterval(updateMessagePart, 5000);
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(interval);
+  }, []);
+
+  // Updating Message Section After 5 Sec
+
   useEffect(() => {
     getData();
   }, [status]);
@@ -212,9 +240,8 @@ function QueryInfo() {
         {allMessage.length ? (
           allMessage.map((item) => {
             return item.send_by === "surveykshan" ? (
-              <div className="flex">
+              <div key={item._id} className="flex">
                 <div
-                  key={item._id}
                   className="p-4 mr-10 bg-white block border rounded-md relative mb-4 border-black"
                   style={{ width: "70%" }}
                 >
@@ -238,9 +265,8 @@ function QueryInfo() {
                 </div>
               </div>
             ) : (
-              <div className="flex flex-row-reverse">
+              <div key={item._id} className="flex flex-row-reverse">
                 <div
-                  key={item._id}
                   className="p-4 block border rounded-md relative mb-4 border-black"
                   style={{ width: "70%", backgroundColor: "#D9FDD3" }}
                 >

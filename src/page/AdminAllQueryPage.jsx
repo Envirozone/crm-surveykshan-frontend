@@ -91,11 +91,11 @@ function AdminAllQueryPage() {
 
   return (
     <>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-4 flex items-center justify-between p-2 border border-blue-300">
+      <div className="relative overflow-x-auto shadow-md rounded-lg m-4 flex flex-col gap-4 lg:flex-row lg:gap-0 items-center justify-between p-2 border border-blue-300">
         <h2 className="text-3xl font-extrabold">
           All Tickets {`(${totalQuery})`}
         </h2>
-        <div className="flex justify-center items-center">
+        <div className="flex flex-col gap-2 lg:gap-0 lg:flex-row justify-center items-center">
           <button
             onClick={() => window.location.reload()}
             type="button"
@@ -165,8 +165,8 @@ function AdminAllQueryPage() {
             onChange={handleSearch}
             type="search"
             id="first_name"
-            className="bg-gray-50 border border-blue-300 text-blue-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 mr-2 "
-            placeholder="Search By user or industry"
+            className="bg-gray-50 border border-blue-300 text-blue-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mr-2 "
+            placeholder="Search By User or Industry Name"
           />
           <select
             onChange={handleChange}
@@ -174,7 +174,7 @@ function AdminAllQueryPage() {
             className="bg-gray-50 border border-blue-300 text-blue-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2 mr-2"
             defaultValue={""}
           >
-            <option value="">Choose a Status</option>
+            <option value="">Choose By Status</option>
             <option value="pending">Pending</option>
             <option value="inProgress">In Progress</option>
             <option value="resolved">Resolved</option>

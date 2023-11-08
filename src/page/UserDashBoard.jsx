@@ -22,7 +22,7 @@ function UserDashBoard() {
   }, []);
 
   return (
-    <div className="flex gap-10">
+    <div className="flex flex-col justify-center items-center lg:flex-row gap-10">
       <div className="mt-16 flex flex-wrap justify-center items-center gap-16 w-1/2">
         <div className="h-48 w-48 bg-red-600 rounded-lg shadow-md shadow-black hover:shadow-lg hover:shadow-black cursor-pointer flex justify-center items-center flex-col">
           <span className="material-symbols-outlined text-5xl">
@@ -58,7 +58,7 @@ function UserDashBoard() {
           </h2>
         </div>
       </div>
-      <div className="w-1/2 mr-10 shadow-lg mt-11 p-7 flex justify-center items-center border border-blue-300 rounded-lg">
+      <div className="w-auto lg:w-1/2 mr-10 shadow-lg mt-11 p-7 flex justify-center items-center border border-blue-300 rounded-lg">
         <div className="flex flex-col">
           <div>
             <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">

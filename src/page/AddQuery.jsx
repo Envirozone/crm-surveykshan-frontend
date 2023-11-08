@@ -46,18 +46,20 @@ function AddQuery() {
 
   return (
     <div>
-      <div className="relative border border-blue-400 overflow-x-auto shadow-md sm:rounded-lg m-4 flex justify-between p-2">
+      {/* Add Query Header Section  */}
+      <div className="relative border border-blue-400 overflow-x-auto shadow-md rounded-lg m-4 flex justify-between p-2">
         <h2 className="text-4xl font-extrabold">Add Query</h2>
         <Link to="/queries">
           <button
             type="button"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-3 mr-2 mb-2 focus:outline-none"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-3 mr-2 focus:outline-none"
           >
             All Query
           </button>
         </Link>
       </div>
 
+      {/* Add Query Below Section  */}
       {other === true ? (
         <div className="shadow-lg m-5 p-8 relative">
           <button

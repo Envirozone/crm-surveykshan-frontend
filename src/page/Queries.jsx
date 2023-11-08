@@ -47,7 +47,7 @@ function Queries() {
 
   return (
     <>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-4 flex items-center justify-between p-2 border border-blue-300">
+      <div className="relative overflow-x-auto shadow-md rounded-lg m-4 flex flex-col lg:flex-row items-center justify-between p-2 border border-blue-300">
         <h2 className="text-3xl font-extrabold">
           All Tickets {`(${totalQuery})`}
         </h2>
@@ -64,7 +64,7 @@ function Queries() {
             className="bg-gray-50 border border-blue-300 text-blue-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2 mr-2"
             defaultValue={""}
           >
-            <option value="">Choose a Status</option>
+            <option value="">Choose By Status</option>
             <option value="pending">Pending</option>
             <option value="inProgress">In Progress</option>
             <option value="resolved">Resolved</option>
@@ -72,13 +72,14 @@ function Queries() {
           <Link to="/addQuery">
             <button
               type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none mt-4 lg:mt-0"
             >
               Add Query
             </button>
           </Link>
         </div>
       </div>
+
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-4">
         <table className="w-full text-sm text-left text-gray-500 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50  ">
