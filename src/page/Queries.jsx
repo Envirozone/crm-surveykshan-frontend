@@ -85,6 +85,9 @@ function Queries() {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50  ">
             <tr>
               <th scope="col" className="px-6 py-3">
+                Date & Time
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Token
               </th>
               <th scope="col" className="px-6 py-3">
@@ -115,6 +118,14 @@ function Queries() {
                     key={query._id}
                     className="bg-white border-b   hover:bg-gray-50 "
                   >
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                    >
+                      {`${query.createdAt.split("T")[0]} | ${
+                        query.createdAt.split("T")[1].split(".")[0]
+                      }`}
+                    </th>
                     <th
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "

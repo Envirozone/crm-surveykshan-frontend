@@ -37,7 +37,6 @@ function PartnerDashboard() {
         );
         const ticketData = res.data;
         setTicket({ ...ticketData });
-        console.log(ticketData);
       } catch (error) {
         toast(response.error.message);
         toast(error.message);
@@ -50,7 +49,7 @@ function PartnerDashboard() {
     <div>
       {/* // Presenting Total Number of Industry Count of Particular Partner  */}
       <div className="mt-4 mx-8 bg-slate-200 border rounded-lg p-4 relative">
-        <h1 className="text-center font-bold text-2xl">
+        <h1 className="text-left md:text-center font-bold text-2xl">
           Total Industry : {industryCounts}
         </h1>
         <button
@@ -73,11 +72,10 @@ function PartnerDashboard() {
               };
             })}
             required
-            placeholder="Select Ticket By Industry Name"
+            placeholder={`Get Ticket Status By Industry (${industryCounts})`}
             onChange={(e) => {
               selectedIndustry.current.value = e.value;
               setIndus(selectedIndustry.current.value);
-              console.log(selectedIndustry.current.value);
             }}
             defaultValue=""
             className="text-blue-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500"

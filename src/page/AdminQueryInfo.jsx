@@ -14,7 +14,6 @@ function AdminQueryInfo() {
   const [description, setDescription] = useState("");
   const [message, setMessage] = useState("");
   const [allMessage, setAllMessage] = useState([]);
-  const [file, setFile] = useState("");
 
   const getData = async () => {
     try {
@@ -124,8 +123,6 @@ function AdminQueryInfo() {
       });
   };
 
-  useEffect(() => {});
-
   // Updating Message Section After 5 Sec
   const updateMessagePart = async () => {
     try {
@@ -162,22 +159,22 @@ function AdminQueryInfo() {
       {/* Query Data  */}
       <div className="shadow-lg p-4 rounded-lg mb-8 border">
         {/* Head Data  */}
-        <div className="flex justify-between items-center">
+        <div className="flex-col lg:flex-row flex justify-between items-center gap-4">
           {/* Indus Info  */}
           <div>
-            <h2 className="text-xl font-bold mb-3 bg-slate-300 p-1 rounded shadow">
+            <h2 className="text-xl font-bold mb-3 bg-slate-200 p-1 rounded shadow">
               Ticket Id :
               <span className="text-blue-700 font-bold rounded-md text-xl text-center px-2 py-1">
                 {ticketId}
               </span>
             </h2>
-            <h2 className="text-xl font-bold mb-3 bg-slate-300 p-1 rounded shadow">
+            <h2 className="text-xl font-bold mb-3 bg-slate-200 p-1 rounded shadow">
               Date & Time :
               <span className="text-blue-700 font-bold rounded-md text-xl text-center px-2 py-1">
                 {dateTime}
               </span>
             </h2>
-            <h2 className="text-xl font-bold mb-3 bg-slate-300 p-1 rounded shadow">
+            <h2 className="text-xl font-bold mb-3 bg-slate-200 p-1 rounded shadow">
               Industry Name :
               <span className="text-blue-700 font-bold rounded-md text-xl text-center px-2 py-1">
                 {industryName}
@@ -337,7 +334,7 @@ function AdminQueryInfo() {
               onChange={(e) => setMessage(e.target.value)}
             />
 
-            <label
+            {/* <label
               className="block mb-2 text-lg font-bold text-gray-900"
               htmlFor="file_input"
             >
@@ -349,7 +346,7 @@ function AdminQueryInfo() {
               type="file"
               value={file}
               onChange={(e) => setFile(e.target.value)}
-            />
+            /> */}
 
             <button
               type="submit"

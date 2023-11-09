@@ -99,7 +99,7 @@ function AdminAllQueryPage() {
           <button
             onClick={() => window.location.reload()}
             type="button"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 focus:outline-none"
           >
             Refresh
           </button>
@@ -132,7 +132,7 @@ function AdminAllQueryPage() {
                   id="simple-search"
                   onChange={(e) => setTokenValue(e.target.value)}
                   value={tokenValue}
-                  className="bg-grey-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                  className="bg-grey-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2"
                   placeholder="Search By Token"
                   required
                 />
@@ -165,7 +165,7 @@ function AdminAllQueryPage() {
             onChange={handleSearch}
             type="search"
             id="first_name"
-            className="bg-gray-50 border border-blue-300 text-blue-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mr-2 "
+            className="bg-gray-50 border border-blue-300 text-blue-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 mr-2 "
             placeholder="Search By User or Industry Name"
           />
           <select
@@ -182,7 +182,7 @@ function AdminAllQueryPage() {
           <Link to="/adminaddquery">
             <button
               type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 focus:outline-none"
             >
               Add Query
             </button>
@@ -194,6 +194,9 @@ function AdminAllQueryPage() {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50  ">
             <tr>
               <th scope="col" className="px-6 py-3">
+                Date & Time
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Token
               </th>
               <th scope="col" className="px-6 py-3">
@@ -201,6 +204,9 @@ function AdminAllQueryPage() {
               </th>
               <th scope="col" className="px-6 py-3">
                 Industry Name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Industry Partner
               </th>
               <th scope="col" className="px-6 py-3">
                 Phone
@@ -231,10 +237,19 @@ function AdminAllQueryPage() {
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                     >
+                      {`${query.createdAt.split("T")[0]} | ${
+                        query.createdAt.split("T")[1].split(".")[0]
+                      }`}
+                    </th>
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                    >
                       {query._id}
                     </th>
                     <td className="px-6 py-4">{query.user_name}</td>
                     <td className="px-6 py-4">{query.industry_name}</td>
+                    <td className="px-6 py-4">{query.industry_partner}</td>
                     <td className="px-6 py-4">{query.phone}</td>
                     <td className="px-6 py-4">{query.query_title}</td>
                     <td

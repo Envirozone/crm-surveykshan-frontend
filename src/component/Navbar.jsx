@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import query from "../assets/query.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -30,6 +30,7 @@ function Navbar() {
       setNav(false);
     }
   }
+
   return (
     <div
       className="flex items-center justify-between pl-10 pr-10 relative w-full"
@@ -50,10 +51,33 @@ function Navbar() {
       userRole == "client" ||
       userRole === "partner" ? (
         <div
-          className="md:hidden text-white cursor-pointer"
+          className="md:hidden text-white cursor-pointer flex items-center justify-center gap-4"
           onClick={handleMenuBar}
         >
-          <span className="material-symbols-outlined text-5xl">menu</span>
+          <div>
+            {userRole === "admin" ? (
+              <>
+                <span className="material-symbols-outlined text-4xl">
+                  admin_panel_settings
+                </span>
+              </>
+            ) : userRole === "partner" ? (
+              <>
+                <span className="material-symbols-outlined text-4xl">
+                  handshake
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="material-symbols-outlined text-4xl">
+                  factory
+                </span>
+              </>
+            )}
+          </div>
+          <div>
+            <span className="material-symbols-outlined text-5xl">menu</span>
+          </div>
         </div>
       ) : (
         <></>
@@ -173,6 +197,25 @@ function Navbar() {
           userRole == "client" ||
           userRole === "partner" ? (
             <>
+              {userRole === "admin" ? (
+                <>
+                  <span className="material-symbols-outlined text-4xl">
+                    admin_panel_settings
+                  </span>
+                </>
+              ) : userRole === "partner" ? (
+                <>
+                  <span className="material-symbols-outlined text-4xl">
+                    handshake
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="material-symbols-outlined text-4xl">
+                    factory
+                  </span>
+                </>
+              )}
               <li className="hover:bg-white hover:text-blue-600 cursor-pointer p-2 rounded">
                 <Link to="/">DashBoard</Link>
               </li>

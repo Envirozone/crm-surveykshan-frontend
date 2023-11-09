@@ -14,7 +14,7 @@ import AdminAddQuery from "../page/AdminAddQuery";
 import PartnerDashboard from "../page/PartnerDashboard";
 import PartnerAddQuery from "../page/PartnerAddQuery";
 import PartnerAllQuery from "../page/PartnerAllQuery";
-import PartnerQueryInfo from "../page/PartnerQueryInfo";
+
 const AllRoutes = () => {
   let isUserLoggedIn = localStorage.getItem("isLoggedIn");
   let userRole = localStorage.getItem("role");
@@ -58,7 +58,7 @@ const AllRoutes = () => {
         ></Route>
         <Route
           path="/partner-all-queries/:id"
-          element={<PartnerQueryInfo />}
+          element={<AdminQueryInfo />}
         ></Route>
         <Route path="/partneraddquery" element={<PartnerAddQuery />}></Route>
       </Route>

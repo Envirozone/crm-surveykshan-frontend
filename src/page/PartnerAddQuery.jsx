@@ -13,8 +13,6 @@ function PartnerAddQuery() {
   const [indus, setIndus] = useState("");
   const [industryCounts, setIndustryCounts] = useState();
   const userData = JSON.parse(localStorage.getItem("data"));
-  //  Input, state and set state change done just need to add in api
-  const [file, setFile] = useState("");
 
   async function formHandle(e) {
     e.preventDefault();
@@ -72,7 +70,7 @@ function PartnerAddQuery() {
         <div>
           <div className="relative border border-blue-400 overflow-x-auto shadow-md rounded-lg m-4 flex justify-between p-2">
             <h2 className="text-3xl lg:text-4xl font-extrabold">Add Query</h2>
-            <Link to="/all-queries">
+            <Link to="/partner-all-queries">
               <button
                 type="button"
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-3 mr-2 focus:outline-none"
@@ -139,20 +137,6 @@ function PartnerAddQuery() {
                   onChange={(e) => setDescription(e.target.value)}
                 />
 
-                <label
-                  className="block mb-2 text-lg font-bold text-gray-900"
-                  htmlFor="file_input"
-                >
-                  Upload File
-                </label>
-                <input
-                  className="block p-2.5 mb-8 w-full text-md text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"
-                  id="file_input"
-                  type="file"
-                  value={file}
-                  onChange={(e) => setFile(e.target.value)}
-                />
-
                 <button
                   type="submit"
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none w-full"
@@ -175,7 +159,7 @@ function PartnerAddQuery() {
                         };
                       })}
                       required
-                      placeholder="Select Industry"
+                      placeholder={`Select Industry (${industryCounts})`}
                       onChange={(e) => {
                         selectedIndustry.current.value = e.value;
                         setIndus(selectedIndustry.current.value);

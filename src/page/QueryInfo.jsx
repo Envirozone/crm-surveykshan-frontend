@@ -14,7 +14,6 @@ function QueryInfo() {
   const [description, setDescription] = useState("");
   const [message, setMessage] = useState("");
   const [allMessage, setAllMessage] = useState([]);
-  const [file, setFile] = useState("");
 
   const handleCloseQuery = async () => {
     const payload = {
@@ -156,22 +155,22 @@ function QueryInfo() {
       {/* Query Data  */}
       <div className="shadow-lg p-4 rounded-lg mb-8 border">
         {/* Head Data  */}
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center flex-col lg:flex-row gap-4">
           {/* Indus Info  */}
           <div>
-            <h2 className="text-xl font-bold mb-3 bg-slate-300 p-1 rounded shadow">
+            <h2 className="text-xl font-bold mb-3 bg-slate-200 p-1 rounded shadow">
               Ticket Id :
               <span className="text-blue-700 font-bold rounded-md text-xl text-center px-2 py-1">
                 {ticketId}
               </span>
             </h2>
-            <h2 className="text-xl font-bold mb-3 bg-slate-300 p-1 rounded shadow">
+            <h2 className="text-xl font-bold mb-3 bg-slate-200 p-1 rounded shadow">
               Date & Time :
               <span className="text-blue-700 font-bold rounded-md text-xl text-center px-2 py-1">
                 {dateTime}
               </span>
             </h2>
-            <h2 className="text-xl font-bold mb-3 bg-slate-300 p-1 rounded shadow">
+            <h2 className="text-xl font-bold mb-3 bg-slate-200 p-1 rounded shadow">
               Industry Name :{" "}
               <span className="text-blue-700 font-bold rounded-md text-xl text-center px-2 py-1">
                 {industryName}
@@ -325,20 +324,6 @@ function QueryInfo() {
               required
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-            />
-
-            <label
-              className="block mb-2 text-lg font-bold text-gray-900"
-              htmlFor="file_input"
-            >
-              Upload File
-            </label>
-            <input
-              className="block p-2.5 mb-8 w-full text-md text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"
-              id="file_input"
-              type="file"
-              value={file}
-              onChange={(e) => setFile(e.target.value)}
             />
 
             <button

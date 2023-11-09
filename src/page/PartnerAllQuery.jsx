@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -10,29 +11,31 @@ function PartnerAllQuery() {
   const [searchFilter, setSearchFilter] = useState("");
   const [tokenValue, setTokenValue] = useState("");
   const [tokenFilter, setTokenFilter] = useState("");
-
+  const userdata = JSON.parse(localStorage.getItem("data"));
   async function getAllQueriesData() {
     // setLoading(true);
     try {
       let res;
       if (statusFilter && searchFilter) {
         res = await axios(
-          `${window.apiURL}/admin/getTicketOnSearchStatusFilter/${searchFilter}/${statusFilter}`
+          `${window.apiURL}/partner/getTicketOnSearchStatusFilter/${userdata.username}/${searchFilter}/${statusFilter}`
         );
       } else if (statusFilter) {
         res = await axios(
-          `${window.apiURL}/admin/getTicketByStatus/${statusFilter}`
+          `${window.apiURL}/partner/getTicketByStatus/${userdata.username}/${statusFilter}`
         );
       } else if (searchFilter) {
         res = await axios(
-          `${window.apiURL}/admin/getTicketOnSearchFilter/${searchFilter}`
+          `${window.apiURL}/partner/getTicketOnSearchFilter/${userdata.username}/${searchFilter}`
         );
       } else if (tokenFilter) {
         res = await axios(
           `${window.apiURL}/admin/getTicketByTicketId/${tokenFilter}`
         );
       } else {
-        res = await axios(`${window.apiURL}/admin/getAllTicket`);
+        res = await axios(
+          `${window.apiURL}/partner/getAllIndustryTicketsOfPartner/${userdata.username}`
+        );
       }
       if (res.status === 200) {
         setAllQuery(res.data.ticketDataByStatus);
@@ -99,7 +102,7 @@ function PartnerAllQuery() {
           <button
             onClick={() => window.location.reload()}
             type="button"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 focus:outline-none"
           >
             Refresh
           </button>
@@ -132,7 +135,7 @@ function PartnerAllQuery() {
                   id="simple-search"
                   onChange={(e) => setTokenValue(e.target.value)}
                   value={tokenValue}
-                  className="bg-grey-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                  className="bg-grey-50 border border-blue-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2"
                   placeholder="Search By Token"
                   required
                 />
@@ -165,7 +168,7 @@ function PartnerAllQuery() {
             onChange={handleSearch}
             type="search"
             id="first_name"
-            className="bg-gray-50 border border-blue-300 text-blue-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 mr-2 "
+            className="bg-gray-50 border border-blue-300 text-blue-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 mr-2 "
             placeholder="Search By User or Industry Name"
           />
           <select
@@ -179,10 +182,10 @@ function PartnerAllQuery() {
             <option value="inProgress">In Progress</option>
             <option value="resolved">Resolved</option>
           </select>
-          <Link to="/adminaddquery">
+          <Link to="/partneraddquery">
             <button
               type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 focus:outline-none"
             >
               Add Query
             </button>
@@ -193,6 +196,9 @@ function PartnerAllQuery() {
         <table className="w-full text-sm text-left text-gray-500 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50  ">
             <tr>
+              <th scope="col" className="px-6 py-3">
+                Date & Time
+              </th>
               <th scope="col" className="px-6 py-3">
                 Token
               </th>
@@ -227,6 +233,14 @@ function PartnerAllQuery() {
                     key={query._id}
                     className="bg-white border-b   hover:bg-gray-50 "
                   >
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                    >
+                      {`${query.createdAt.split("T")[0]} | ${
+                        query.createdAt.split("T")[1].split(".")[0]
+                      }`}
+                    </th>
                     <th
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
@@ -270,7 +284,7 @@ function PartnerAllQuery() {
 
                     <td className="px-6 py-4 text-left">
                       <Link
-                        to={`/all-queries/${query._id}`}
+                        to={`/partner-all-queries/${query._id}`}
                         className="font-medium text-blue-600  hover:underline"
                       >
                         More Info

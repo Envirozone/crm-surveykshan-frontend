@@ -7,8 +7,6 @@ function AddQuery() {
   const [other, setOther] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  //  Input, state and set state change done just need to add in api
-  const [file, setFile] = useState("");
 
   async function formHandle(e) {
     e.preventDefault();
@@ -99,20 +97,6 @@ function AddQuery() {
               required
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-            />
-
-            <label
-              className="block mb-2 text-lg font-bold text-gray-900"
-              htmlFor="file_input"
-            >
-              Upload File
-            </label>
-            <input
-              className="block p-2.5 mb-8 w-full text-md text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"
-              id="file_input"
-              type="file"
-              value={file}
-              onChange={(e) => setFile(e.target.value)}
             />
 
             <button
