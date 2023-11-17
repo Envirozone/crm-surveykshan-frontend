@@ -33,6 +33,7 @@ function PartnerAddQuery() {
         toast.success(res.data.message);
         setTitle("");
         setDescription("");
+        setOther(false);
       }
     } catch (error) {
       if (error.response) {
@@ -46,6 +47,11 @@ function PartnerAddQuery() {
   const handleRadioForm = async (e) => {
     e.preventDefault();
     setOther(true);
+  };
+
+  const handleBackButton = async () => {
+    setOther(false);
+    setTitle("");
   };
 
   useEffect(() => {
@@ -92,7 +98,7 @@ function PartnerAddQuery() {
                   <button
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none lg:absolute lg:right-6"
                     style={{ top: "35px" }}
-                    onClick={() => setOther(false)}
+                    onClick={handleBackButton}
                   >
                     Back
                   </button>
@@ -248,7 +254,7 @@ function PartnerAddQuery() {
                     id="bordered-radio-2"
                     type="radio"
                     value={other}
-                    onChange={() => setOther(true)}
+                    // onChange={() => setOther(true)}
                     name="bordered-radio"
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
                   />

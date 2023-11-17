@@ -26,6 +26,7 @@ function AddQuery() {
         toast.success(res.data.message);
         setTitle("");
         setDescription("");
+        setOther(false);
       }
     } catch (error) {
       if (error.response) {
@@ -40,6 +41,11 @@ function AddQuery() {
   const handleRadioForm = async (e) => {
     e.preventDefault();
     setOther(true);
+  };
+
+  const handleBackButton = async () => {
+    setOther(false);
+    setTitle("");
   };
 
   return (
@@ -62,7 +68,7 @@ function AddQuery() {
         <div className="shadow-lg m-5 p-8 relative">
           <button
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none absolute top-3 right-6"
-            onClick={() => setOther(false)}
+            onClick={handleBackButton}
           >
             Back
           </button>
@@ -179,7 +185,7 @@ function AddQuery() {
                 id="bordered-radio-2"
                 type="radio"
                 value={other}
-                onChange={() => setOther(true)}
+                // onChange={() => setOther(true)}
                 name="bordered-radio"
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
               />
