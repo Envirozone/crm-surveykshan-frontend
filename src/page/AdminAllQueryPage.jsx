@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -10,6 +11,25 @@ function AdminAllQueryPage() {
   const [searchFilter, setSearchFilter] = useState("");
   const [tokenValue, setTokenValue] = useState("");
   const [tokenFilter, setTokenFilter] = useState("");
+
+  // Adding Message Seen Feature
+  const [seenMessageCounts, setSeenMessageCounts] = useState([]);
+  async function getSeenMessageCounts() {
+    try {
+      const res = await axios(
+        `${window.apiURL}/ticket/getCount/allUnseenMessageOfAllTickets/other`
+      );
+      if (res.status === 200) {
+        setSeenMessageCounts(res.data);
+      }
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error(error.message);
+      }
+    }
+  }
 
   async function getAllQueriesData() {
     // setLoading(true);
@@ -48,7 +68,9 @@ function AdminAllQueryPage() {
   }
   useEffect(() => {
     getAllQueriesData();
+    getSeenMessageCounts();
   }, [statusFilter, searchFilter, tokenFilter]);
+
   const handleChange = (e) => {
     setStatusFilter(e.target.value);
   };
@@ -200,6 +222,11 @@ function AdminAllQueryPage() {
                 Token
               </th>
               <th scope="col" className="px-6 py-3">
+                <span className="material-symbols-outlined text-blue-600 text-2xl">
+                  mark_unread_chat_alt
+                </span>
+              </th>
+              <th scope="col" className="px-6 py-3">
                 User Name
               </th>
               <th scope="col" className="px-6 py-3">
@@ -246,6 +273,21 @@ function AdminAllQueryPage() {
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                     >
                       {query._id}
+                    </th>
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                    >
+                      {seenMessageCounts?.map((item) => {
+                        const [ticketId, counts] = item.split("+");
+                        if (ticketId === query._id) {
+                          return (
+                            <div className="p-2 rounded-full bg-red-300 text-center font-bold border">
+                              {counts}
+                            </div>
+                          );
+                        }
+                      })}
                     </th>
                     <td className="px-6 py-4">{query.user_name}</td>
                     <td className="px-6 py-4">{query.industry_name}</td>

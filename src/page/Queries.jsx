@@ -7,9 +7,25 @@ function Queries() {
   const [allQuery, setAllQuery] = useState([]);
   const [statusFilter, setStatusFilter] = useState("");
   const [totalQuery, setTotalQuery] = useState("");
-  const [unseenMessage, setUnseenMessage] = useState(
-    "6556f0daf4bff92b9ffb230a"
-  );
+
+  // Adding Message Seen Feature
+  const [seenMessageCounts, setSeenMessageCounts] = useState([]);
+  async function getSeenMessageCounts() {
+    try {
+      const res = await axios(
+        `${window.apiURL}/ticket/getCount/allUnseenMessageOfAllTickets/surveykshan`
+      );
+      if (res.status === 200) {
+        setSeenMessageCounts(res.data);
+      }
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error(error.message);
+      }
+    }
+  }
 
   async function getAllQueriesData() {
     // setLoading(true);
@@ -43,26 +59,9 @@ function Queries() {
     }
   }
 
-  // async function getCountOfUnseenMessage(ticketId) {
-  //   try {
-  //     const res = await axios.post(
-  //       `${window.apiURL}/ticket/getCount/allUnseenMessage/${ticketId}`
-  //     );
-
-  //     const count = await res?.data?.count;
-  //     return count;
-  //   } catch (error) {
-  //     if (error.response) {
-  //       toast.error(error.response.data.message);
-  //     } else {
-  //       toast.error(error.message);
-  //     }
-  //   }
-  // }
-
   useEffect(() => {
     getAllQueriesData();
-    // getCountOfUnseenMessage();
+    getSeenMessageCounts();
   }, [statusFilter]);
 
   const handleChange = (e) => {
@@ -115,7 +114,9 @@ function Queries() {
                 Token
               </th>
               <th scope="col" className="px-6 py-3">
-                UnSeenMessage
+                <span className="material-symbols-outlined text-blue-600 text-2xl">
+                  mark_unread_chat_alt
+                </span>
               </th>
               <th scope="col" className="px-6 py-3">
                 User Name
@@ -163,9 +164,16 @@ function Queries() {
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                     >
-                      {/* {getCountOfUnseenMessageArr(query._id)} */}
-                      {/* {getCountOfUnseenMessage(query._id)} */}
-                      {/* {console.log(query._id)} */}2
+                      {seenMessageCounts?.map((item) => {
+                        const [ticketId, counts] = item.split("+");
+                        if (ticketId === query._id) {
+                          return (
+                            <div className="p-2 rounded-full bg-red-300 text-center font-bold border">
+                              {counts}
+                            </div>
+                          );
+                        }
+                      })}
                     </th>
                     <td className="px-6 py-4">{query.user_name}</td>
                     <td className="px-6 py-4">{query.industry_name}</td>
