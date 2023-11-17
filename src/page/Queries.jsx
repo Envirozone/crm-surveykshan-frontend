@@ -1,11 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 function Queries() {
   const [allQuery, setAllQuery] = useState([]);
   const [statusFilter, setStatusFilter] = useState("");
   const [totalQuery, setTotalQuery] = useState("");
+  const [unseenMessage, setUnseenMessage] = useState(
+    "6556f0daf4bff92b9ffb230a"
+  );
 
   async function getAllQueriesData() {
     // setLoading(true);
@@ -38,9 +42,29 @@ function Queries() {
       }
     }
   }
+
+  // async function getCountOfUnseenMessage(ticketId) {
+  //   try {
+  //     const res = await axios.post(
+  //       `${window.apiURL}/ticket/getCount/allUnseenMessage/${ticketId}`
+  //     );
+
+  //     const count = await res?.data?.count;
+  //     return count;
+  //   } catch (error) {
+  //     if (error.response) {
+  //       toast.error(error.response.data.message);
+  //     } else {
+  //       toast.error(error.message);
+  //     }
+  //   }
+  // }
+
   useEffect(() => {
     getAllQueriesData();
+    // getCountOfUnseenMessage();
   }, [statusFilter]);
+
   const handleChange = (e) => {
     setStatusFilter(e.target.value);
   };
@@ -91,6 +115,9 @@ function Queries() {
                 Token
               </th>
               <th scope="col" className="px-6 py-3">
+                UnSeenMessage
+              </th>
+              <th scope="col" className="px-6 py-3">
                 User Name
               </th>
               <th scope="col" className="px-6 py-3">
@@ -131,6 +158,14 @@ function Queries() {
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                     >
                       {query._id}
+                    </th>
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                    >
+                      {/* {getCountOfUnseenMessageArr(query._id)} */}
+                      {/* {getCountOfUnseenMessage(query._id)} */}
+                      {/* {console.log(query._id)} */}2
                     </th>
                     <td className="px-6 py-4">{query.user_name}</td>
                     <td className="px-6 py-4">{query.industry_name}</td>

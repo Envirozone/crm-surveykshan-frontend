@@ -81,7 +81,28 @@ function AdminQueryInfo() {
       }
     } catch (error) {
       if (error.response) {
+        isLoading(false);
         toast.error(error.response.data.message);
+      } else {
+        isLoading(false);
+        toast.error(error.message);
+      }
+    }
+  };
+
+  // Update Message Seen Status
+  const handleSeenMessage = async (messageId) => {
+    try {
+      const res = await axios.patch(
+        `${window.apiURL}/admin/updateTicket/seenStatusByAdmin/${id}/${messageId}`
+      );
+      if (res.status === 200) {
+        toast.success("Message Seen Status Updated");
+        getData();
+      }
+    } catch (error) {
+      if (error?.response) {
+        toast.error(error?.response?.data?.message);
       } else {
         toast.error(error.message);
       }
@@ -289,13 +310,23 @@ function AdminQueryInfo() {
                       <></>
                     )}
                   </div>
-                  <div className="flex absolute bottom-2 right-2">
+                  <div className="flex absolute bottom-2 right-2 gap-2 items-center">
                     <p className="font-medium bg-white border rounded-md px-1 py-.5">
                       {item.send_by} |{" "}
                       {`${item.message_time.split("T")[0]}, ${
                         item.message_time.split("T")[1].split(".")[0]
                       }`}
                     </p>
+                    {/* // Adding Seen Status Part  */}
+                    {item?.seen == true ? (
+                      <span className="material-symbols-outlined text-blue-600">
+                        done_all
+                      </span>
+                    ) : (
+                      <span className="material-symbols-outlined text-gray-500">
+                        done_all
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -323,7 +354,7 @@ function AdminQueryInfo() {
                       <></>
                     )}
                   </div>
-                  <div className="flex absolute bottom-2 right-2">
+                  <div className="flex absolute bottom-2 right-2 gap-2 items-center">
                     <p
                       className="font-medium border rounded-md px-1 py-.5"
                       style={{ backgroundColor: "#D9FDD3" }}
@@ -333,6 +364,15 @@ function AdminQueryInfo() {
                         item.message_time.split("T")[1].split(".")[0]
                       }`}
                     </p>
+                    {/* // Adding Seen Status Part  */}
+                    {item?.seen === true ? (
+                      <></>
+                    ) : (
+                      <button
+                        onClick={() => handleSeenMessage(item._id)}
+                        className="w-5 h-5 border-black border-2 cursor-pointer"
+                      ></button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -391,7 +431,7 @@ function AdminQueryInfo() {
               <div role="status" className="flex justify-center items-center">
                 <svg
                   aria-hidden="true"
-                  class="w-12 h-12 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                  className="w-12 h-12 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                   viewBox="0 0 100 101"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -405,7 +445,7 @@ function AdminQueryInfo() {
                     fill="currentFill"
                   />
                 </svg>
-                <span class="sr-only">Loading...</span>
+                <span className="sr-only">Loading...</span>
               </div>
             ) : (
               <></>
