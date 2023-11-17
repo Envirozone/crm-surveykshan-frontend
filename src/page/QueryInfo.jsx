@@ -285,8 +285,11 @@ function QueryInfo() {
                   style={{ width: "70%" }}
                 >
                   <div
-                    className="text-xl font-bold mb-2"
-                    style={{ wordWrap: "break-word" }}
+                    className="text-xl font-bold mb-14 lg:mb-4"
+                    style={{
+                      wordWrap: "break-word",
+                      filter: item?.seen === false ? "blur(5px)" : "blur(0px)",
+                    }}
                   >
                     {/* // Showing Text of Message */}
                     <h1 className="mb-5">{item?.message}</h1>
@@ -303,7 +306,7 @@ function QueryInfo() {
                     )}
                   </div>
 
-                  <div className="flex absolute bottom-2 right-2 gap-2 items-center">
+                  <div className="flex absolute bottom-2 right-2 gap-2 items-center p-1">
                     <p
                       className="font-medium border rounded-md px-1 py-.5"
                       style={{ backgroundColor: "#D9FDD3" }}
@@ -332,7 +335,7 @@ function QueryInfo() {
                   style={{ width: "70%", backgroundColor: "#D9FDD3" }}
                 >
                   <div
-                    className="text-xl font-bold mb-2"
+                    className="text-xl font-bold mb-14 lg:mb-4"
                     style={{ wordWrap: "break-word" }}
                   >
                     {/* // Showing Text of Message */}
@@ -363,7 +366,7 @@ function QueryInfo() {
                     )} */}
                   </div>
 
-                  <div className="flex absolute bottom-2 right-2 gap-2 items-center">
+                  <div className="flex absolute bottom-2 right-2 gap-2 items-center p-1">
                     <p className="font-medium bg-white border rounded-md px-1 py-.5">
                       {item.send_by} |{" "}
                       {`${item.message_time.split("T")[0]}, ${

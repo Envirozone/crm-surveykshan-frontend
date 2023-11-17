@@ -290,10 +290,13 @@ function AdminQueryInfo() {
               <div className="flex flex-row-reverse" key={item._id}>
                 <div
                   className="p-4 mr-2 w-1/2 block border rounded-md relative mb-4 border-black"
-                  style={{ width: "70%", backgroundColor: "#D9FDD3" }}
+                  style={{
+                    width: "70%",
+                    backgroundColor: "#D9FDD3",
+                  }}
                 >
                   <div
-                    className="text-xl font-bold mb-2"
+                    className="text-xl font-bold mb-14 lg:mb-4"
                     style={{ wordWrap: "break-word" }}
                   >
                     {/* // Showing Text of Message */}
@@ -310,7 +313,7 @@ function AdminQueryInfo() {
                       <></>
                     )}
                   </div>
-                  <div className="flex absolute bottom-2 right-2 gap-2 items-center">
+                  <div className="flex absolute bottom-2 right-2 gap-2 items-center p-1">
                     <p className="font-medium bg-white border rounded-md px-1 py-.5">
                       {item.send_by} |{" "}
                       {`${item.message_time.split("T")[0]}, ${
@@ -337,8 +340,11 @@ function AdminQueryInfo() {
                   style={{ width: "70%" }}
                 >
                   <div
-                    className="text-xl font-bold mb-2"
-                    style={{ wordWrap: "break-word" }}
+                    className="text-xl font-bold mb-14 lg:mb-4"
+                    style={{
+                      wordWrap: "break-word",
+                      filter: item?.seen === false ? "blur(5px)" : "blur(0px)",
+                    }}
                   >
                     {/* // Showing Text of Message */}
                     <h1 className="mb-5">{item.message}</h1>
@@ -354,7 +360,8 @@ function AdminQueryInfo() {
                       <></>
                     )}
                   </div>
-                  <div className="flex absolute bottom-2 right-2 gap-2 items-center">
+
+                  <div className="flex absolute bottom-2 right-2 gap-2 items-center p-1">
                     <p
                       className="font-medium border rounded-md px-1 py-.5"
                       style={{ backgroundColor: "#D9FDD3" }}
