@@ -58,15 +58,21 @@ function UserDashBoard() {
           </h2>
         </div>
       </div>
-      <div className="w-auto lg:w-1/2 mr-10 shadow-lg mt-11 p-7 flex justify-center items-center border border-blue-300 rounded-lg">
-        <div className="flex flex-col">
+
+      <div className="w-auto lg:w-1/2 lg:mr-10 shadow-lg mt-11 p-7 flex justify-center items-center border border-blue-300 rounded-lg">
+        <div
+          className="flex flex-col w-80 lg:w-auto overflow-auto"
+          // style={{ wordWrap: "break-word" }}
+        >
           <div>
-            <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">
+            <div className="flex gap-5 p-1">
               <div>
-                <p className="font-bold text-black-600 text-2xl">UserName: </p>
+                <p className="font-medium text-black-600 text-2xl">
+                  UserName:{" "}
+                </p>
               </div>
               <div>
-                <p className="text-2xl font-medium text-blue-700">
+                <p className="text-2xl font-bold text-blue-700">
                   {objData.username}
                 </p>
               </div>
@@ -75,7 +81,7 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">
+            <div className="flex gap-5 p-1">
               <div>
                 <p className="font-medium text-black-600 text-2xl">
                   Industry Name:{" "}
@@ -91,7 +97,7 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">
+            <div className="flex gap-5 p-1 w-full">
               <div>
                 <p className="font-medium text-black-600 text-2xl">Email: </p>
               </div>
@@ -105,10 +111,10 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">
+            <div className="flex gap-5 p-1">
               <div>
                 <p className="font-medium text-black-600 text-2xl">
-                  Phone Number:{" "}
+                  Phone No.:{" "}
                 </p>
               </div>
               <div>
@@ -121,7 +127,7 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">
+            <div className="flex gap-5 p-1">
               <div>
                 <p className="font-medium text-black-600 text-2xl">State: </p>
               </div>
@@ -135,7 +141,7 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">
+            <div className="flex gap-5 p-1">
               <div>
                 <p className="font-medium text-black-600 text-2xl ">City: </p>
               </div>
@@ -149,7 +155,7 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 bg-slate-200 p-1 rounded shadow">
+            <div className="flex gap-5 p-1">
               <div>
                 <p className="font-medium text-black-600 text-2xl">Address: </p>
               </div>
