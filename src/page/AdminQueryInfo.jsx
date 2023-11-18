@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -192,7 +192,19 @@ function AdminQueryInfo() {
 
   useEffect(() => {
     getData();
+    scrollToBottom();
   }, [status]);
+
+  // **********************************************
+  // Adding Scrollable Feature in Chat Section
+  const scrollableRef = useRef(null);
+
+  // Function to scroll to the bottom
+  const scrollToBottom = () => {
+    if (scrollableRef.current) {
+      scrollableRef.current.scrollTop = scrollableRef.current.scrollHeight;
+    }
+  };
 
   return (
     <div className="p-4">
@@ -281,13 +293,19 @@ function AdminQueryInfo() {
       </div>
 
       {/* All Message Section  */}
+      <div className="text-center font-bold mb-2 text-3xl bg-green-400 p-1 shadow rounded">
+        Feel Free To Chat With Us
+      </div>
       <div
-        className="shadow-lg p-4 rounded-lg mb-8 border"
-        style={{ backgroundColor: "#EFEAE2" }}
+        ref={scrollableRef}
+        className="shadow-lg p-4 rounded-lg mb-8 border border-black"
+        style={{
+          overflowY: "auto",
+          scrollBehavior: "smooth",
+          backgroundColor: "#EFEAE2",
+          maxHeight: "90vh",
+        }}
       >
-        <div className="text-center font-bold mb-7 text-3xl bg-green-400 p-1 shadow rounded">
-          Feel Free To Chat With Us
-        </div>
         {allMessage.length ? (
           allMessage.map((item) => {
             return item.send_by === "surveykshan" ? (

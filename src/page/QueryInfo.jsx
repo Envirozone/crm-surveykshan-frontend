@@ -179,7 +179,7 @@ function QueryInfo() {
   };
 
   useEffect(() => {
-    const interval = setInterval(updateMessagePart, 10000);
+    const interval = setInterval(updateMessagePart, 5000);
 
     // Clean up the interval when the component unmounts
     return () => clearInterval(interval);
@@ -188,7 +188,19 @@ function QueryInfo() {
 
   useEffect(() => {
     getData();
+    scrollToBottom();
   }, [status]);
+
+  // **********************************************
+  // Adding Scrollable Feature in Chat Section
+  const scrollableRef = useRef(null);
+
+  // Function to scroll to the bottom
+  const scrollToBottom = () => {
+    if (scrollableRef.current) {
+      scrollableRef.current.scrollTop = scrollableRef.current.scrollHeight;
+    }
+  };
 
   return (
     <div className="p-4">
@@ -273,19 +285,17 @@ function QueryInfo() {
       </div>
 
       {/* All Message Section  */}
-      <div className="text-center font-bold mb-7 text-3xl bg-green-400 p-1 shadow rounded">
+      <div className="text-center font-bold mb-2 text-3xl bg-green-400 p-1 shadow rounded">
         Feel Free To Chat With Us
       </div>
       <div
-        className="shadow-lg p-4 rounded-lg mb-8 border"
+        ref={scrollableRef}
+        className="shadow-lg p-4 rounded-lg mb-8 border border-black"
         style={{
+          overflowY: "auto",
+          scrollBehavior: "smooth",
           backgroundColor: "#EFEAE2",
           maxHeight: "90vh",
-          overflowY: "auto",
-          // scrollTimeline: "revert",
-          // display: "flex",
-          // flexDirection: "column-reverse",
-          scrollSnapStop: "always",
         }}
       >
         {allMessage.length ? (
