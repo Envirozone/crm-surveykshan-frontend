@@ -257,7 +257,7 @@ function QueryInfo() {
             {status === "pending" || status === "inProgress" ? (
               <button
                 onClick={handleCloseQuery}
-                className="text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md text-center px-8 py-2.5 mr-2 mb-2 focus:outline-none border-black border-2"
+                className="text-white bg-green-500 hover:bg-green-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-md text-center px-8 py-2.5 mr-2 mb-2 focus:outline-none shadow-lg shadow-black"
               >
                 Close Query
               </button>
@@ -268,7 +268,7 @@ function QueryInfo() {
         </div>
 
         {/* Bottom Data  */}
-        <div className="shadow-lg mt-5 border border-blue-100 rounded-md p-5 flex gap-4 flex-col">
+        <div className="mt-5 border border-gray-300 rounded-md p-5 flex gap-4 flex-col">
           <div className="flex gap-3">
             <h2 className="text-black font-bold bg-gray-200 text-center rounded-md text-xl px-2 py-1 mb-2">
               Query Title{" "}

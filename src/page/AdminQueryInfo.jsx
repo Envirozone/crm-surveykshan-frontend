@@ -276,7 +276,7 @@ function AdminQueryInfo() {
         </div>
 
         {/* Bottom Data  */}
-        <div className="shadow-lg mt-5 border border-blue-100 rounded-md p-5 flex gap-4 flex-col">
+        <div className="mt-5 border border-gray-300 rounded-md p-5 flex gap-4 flex-col">
           <div className="flex gap-3">
             <h2 className="text-black font-bold bg-gray-200 text-center rounded-md text-xl px-2 py-1 mb-2">
               Query Title
