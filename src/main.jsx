@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./Redux/Store";
 import Navbar from "./component/Navbar.jsx";
-window.apiURL = "http://localhost:4001/v1";
+window.apiURL = "https://crm.accesssurveykshan.co.in/v1";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
