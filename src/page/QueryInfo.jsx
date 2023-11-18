@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -83,7 +83,7 @@ function QueryInfo() {
         },
       });
       setTicketId(res?.data[0]?._id);
-      setDateTime(new Date(res?.data[0]?.createdAt).toLocaleString());
+      setDateTime(res?.data[0]?.createdAt);
       setIndustryName(res?.data[0]?.industry_name);
       setStatus(res?.data[0]?.status);
       setTitle(res?.data[0]?.query_title);
@@ -207,7 +207,11 @@ function QueryInfo() {
             <h2 className="text-xl font-bold mb-3 bg-slate-200 p-1 rounded shadow">
               Date & Time :
               <span className="text-blue-700 font-bold rounded-md text-xl text-center px-2 py-1">
-                {dateTime}
+                {dateTime
+                  ? `${dateTime?.split("T")[0]} | ${
+                      dateTime?.split("T")[1].split("+")[0]
+                    }`
+                  : ""}
               </span>
             </h2>
             <h2 className="text-xl font-bold mb-3 bg-slate-200 p-1 rounded shadow">
@@ -269,13 +273,21 @@ function QueryInfo() {
       </div>
 
       {/* All Message Section  */}
+      <div className="text-center font-bold mb-7 text-3xl bg-green-400 p-1 shadow rounded">
+        Feel Free To Chat With Us
+      </div>
       <div
         className="shadow-lg p-4 rounded-lg mb-8 border"
-        style={{ backgroundColor: "#EFEAE2" }}
+        style={{
+          backgroundColor: "#EFEAE2",
+          maxHeight: "90vh",
+          overflowY: "auto",
+          // scrollTimeline: "revert",
+          // display: "flex",
+          // flexDirection: "column-reverse",
+          scrollSnapStop: "always",
+        }}
       >
-        <div className="text-center font-bold mb-7 text-3xl bg-green-400 p-1 shadow rounded">
-          Feel Free To Chat With Us
-        </div>
         {allMessage.length ? (
           allMessage.map((item) => {
             return item.send_by === "surveykshan" ? (
@@ -313,7 +325,7 @@ function QueryInfo() {
                     >
                       {item.send_by} |{" "}
                       {`${item.message_time.split("T")[0]}, ${
-                        item.message_time.split("T")[1].split(".")[0]
+                        item.message_time.split("T")[1].split("+")[0]
                       }`}
                     </p>
                     {/* // Adding Message Seen Feature  */}
@@ -370,7 +382,7 @@ function QueryInfo() {
                     <p className="font-medium bg-white border rounded-md px-1 py-.5">
                       {item.send_by} |{" "}
                       {`${item.message_time.split("T")[0]}, ${
-                        item.message_time.split("T")[1].split(".")[0]
+                        item.message_time.split("T")[1].split("+")[0]
                       }`}
                     </p>
                     {/* // Adding Message Seen Feature  */}

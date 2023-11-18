@@ -265,7 +265,7 @@ function AdminAllQueryPage() {
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                     >
                       {`${query.createdAt.split("T")[0]} | ${
-                        query.createdAt.split("T")[1].split(".")[0]
+                        query.createdAt.split("T")[1].split("+")[0]
                       }`}
                     </th>
                     <th
@@ -282,7 +282,10 @@ function AdminAllQueryPage() {
                         const [ticketId, counts] = item.split("+");
                         if (ticketId === query._id) {
                           return (
-                            <div className="p-2 rounded-full bg-red-300 text-center font-bold border">
+                            <div
+                              key={ticketId}
+                              className="p-2 rounded-full bg-red-300 text-center font-bold border"
+                            >
                               {counts}
                             </div>
                           );

@@ -33,7 +33,7 @@ function AdminQueryInfo() {
         },
       });
       setTicketId(res?.data[0]?._id);
-      setDateTime(new Date(res?.data[0]?.createdAt).toLocaleString());
+      setDateTime(res?.data[0]?.createdAt);
       setIndustryName(res?.data[0]?.industry_name);
       setStatus(res?.data[0]?.status);
       setTitle(res?.data[0]?.query_title);
@@ -211,7 +211,11 @@ function AdminQueryInfo() {
             <h2 className="text-xl font-bold mb-3 bg-slate-200 p-1 rounded shadow">
               Date & Time :
               <span className="text-blue-700 font-bold rounded-md text-xl text-center px-2 py-1">
-                {dateTime}
+                {dateTime
+                  ? `${dateTime?.split("T")[0]} | ${
+                      dateTime?.split("T")[1].split("+")[0]
+                    }`
+                  : ""}
               </span>
             </h2>
             <h2 className="text-xl font-bold mb-3 bg-slate-200 p-1 rounded shadow">
@@ -317,7 +321,7 @@ function AdminQueryInfo() {
                     <p className="font-medium bg-white border rounded-md px-1 py-.5">
                       {item.send_by} |{" "}
                       {`${item.message_time.split("T")[0]}, ${
-                        item.message_time.split("T")[1].split(".")[0]
+                        item.message_time.split("T")[1].split("+")[0]
                       }`}
                     </p>
                     {/* // Adding Seen Status Part  */}
@@ -368,7 +372,7 @@ function AdminQueryInfo() {
                     >
                       {item.send_by} |{" "}
                       {`${item.message_time.split("T")[0]}, ${
-                        item.message_time.split("T")[1].split(".")[0]
+                        item.message_time.split("T")[1].split("+")[0]
                       }`}
                     </p>
                     {/* // Adding Seen Status Part  */}
