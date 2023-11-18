@@ -46,7 +46,7 @@ function PartnerDashboard() {
   }, [indus]);
 
   return (
-    <div>
+    <div className="mb-6">
       {/* // Presenting Total Number of Industry Count of Particular Partner  */}
       <div className="mt-4 mx-8 bg-slate-200 border rounded-lg p-4 relative">
         <h1 className="text-left md:text-center font-bold text-2xl">

@@ -37,7 +37,7 @@ function AdminDashboard() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-10 justify-center">
+    <div className="flex flex-col gap-10 justify-center mb-6">
       {/* // Header Total Industry Show  */}
       <div className="mt-4 mx-8 bg-slate-200 border rounded-lg p-4 relative">
         <h1 className="text-left md:text-center font-bold text-xl md:text-2xl">
