@@ -31,6 +31,23 @@ function Navbar() {
     }
   }
 
+  // Handeling Screen Resize Feature
+  useEffect(() => {
+    const handleResize = () => {
+      // Code to be executed when the window is resized
+      if (window.innerWidth >= 768) {
+        setNav(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div
       className="flex items-center justify-between pl-10 pr-10 relative w-full"
