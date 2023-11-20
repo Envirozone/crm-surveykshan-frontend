@@ -93,7 +93,11 @@ function Navbar() {
             )}
           </div>
           <div>
-            <span className="material-symbols-outlined text-5xl">menu</span>
+            {nav == true ? (
+              <span class="material-symbols-outlined text-4xl">cancel</span>
+            ) : (
+              <span className="material-symbols-outlined text-5xl">menu</span>
+            )}
           </div>
         </div>
       ) : (

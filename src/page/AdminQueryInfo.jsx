@@ -449,9 +449,10 @@ function AdminQueryInfo() {
             {/* // Applying Image Send Input  */}
             <input
               type="file"
-              accept=".jpg, .jpeg, .png, .svg, .mp4, .3gp, .webm, .flv, .mov, .wmv, .mkv, .avi"
               name="image"
               className="cursor-pointer"
+              accept="image/*, video/*, audio/*"
+              capture
               onChange={handleImageChange}
             />
 
