@@ -455,6 +455,7 @@ function QueryInfo() {
               accept=".jpg, .jpeg, .png, .svg, .mp4, .3gp, .webm, .flv, .mov, .wmv, .mkv, .avi"
               name="image"
               className="cursor-pointer"
+              capture="camera"
               onChange={handleImageChange}
             />
 
