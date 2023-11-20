@@ -452,10 +452,12 @@ function QueryInfo() {
             {/* // Applying Image Send Input  */}
             <input
               type="file"
-              accept=".jpg, .jpeg, .png, .svg, .mp4, .3gp, .webm, .flv, .mov, .wmv, .mkv, .avi"
               name="image"
               className="cursor-pointer"
-              capture="camera"
+              // accept=".jpg, .jpeg, .png, .svg, .mp4, .3gp, .webm, .flv, .mov, .wmv, .mkv, .avi"
+              // capture="camera"
+              accept="image/*"
+              capture="environment"
               onChange={handleImageChange}
             />
 
