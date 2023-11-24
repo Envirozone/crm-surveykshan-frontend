@@ -214,15 +214,15 @@ function AdminQueryInfo() {
         <div className="flex-col lg:flex-row flex justify-between items-center gap-4">
           {/* Indus Info  */}
           <div>
-            <h2 className="text-xl font-bold mb-3 bg-slate-200 p-1 rounded shadow">
+            <h2 className="text-lg font-bold mb-3 bg-slate-200 p-1 rounded shadow">
               Ticket Id :
-              <span className="text-blue-700 font-bold rounded-md text-xl text-center px-2 py-1">
+              <span className="text-blue-700 font-bold rounded-md text-lg text-center px-2 py-1">
                 {ticketId}
               </span>
             </h2>
-            <h2 className="text-xl font-bold mb-3 bg-slate-200 p-1 rounded shadow">
+            <h2 className="text-lg font-bold mb-3 bg-slate-200 p-1 rounded shadow">
               Date & Time :
-              <span className="text-blue-700 font-bold rounded-md text-xl text-center px-2 py-1">
+              <span className="text-blue-700 font-bold rounded-md text-lg text-center px-2 py-1">
                 {dateTime
                   ? `${dateTime?.split("T")[0]} | ${
                       dateTime?.split("T")[1].split("+")[0]
@@ -230,9 +230,9 @@ function AdminQueryInfo() {
                   : ""}
               </span>
             </h2>
-            <h2 className="text-xl font-bold mb-3 bg-slate-200 p-1 rounded shadow">
+            <h2 className="text-lg font-bold mb-3 bg-slate-200 p-1 rounded shadow">
               Industry Name :
-              <span className="text-blue-700 font-bold rounded-md text-xl text-center px-2 py-1">
+              <span className="text-blue-700 font-bold rounded-md text-lg text-center px-2 py-1">
                 {industryName}
               </span>
             </h2>
@@ -278,22 +278,22 @@ function AdminQueryInfo() {
         {/* Bottom Data  */}
         <div className="mt-5 border border-gray-300 rounded-md p-5 flex gap-4 flex-col">
           <div className="flex gap-3">
-            <h2 className="text-black font-bold bg-gray-200 text-center rounded-md text-xl px-2 py-1 mb-2">
+            <h2 className="text-black font-bold bg-gray-200 text-center rounded-md text-lg px-2 py-1 mb-2">
               Query Title
             </h2>
-            <h1 className="text-xl font-medium">{title}</h1>
+            <h1 className="text-lg font-medium">{title}</h1>
           </div>
           <div className="flex gap-3">
-            <h2 className="text-black font-bold bg-gray-200 text-center rounded-md text-xl px-2 py-1 mb-2">
+            <h2 className="text-black font-bold bg-gray-200 text-center rounded-md text-lg px-2 py-1 mb-2">
               Query Description
             </h2>
-            <h1 className="text-xl font-medium">{description}</h1>
+            <h1 className="text-lg font-medium">{description}</h1>
           </div>
         </div>
       </div>
 
       {/* All Message Section  */}
-      <div className="text-center font-bold mb-2 text-3xl bg-green-400 p-1 shadow rounded">
+      <div className="text-center font-bold mb-2 text-2xl bg-green-400 p-1 shadow rounded">
         Feel Free To Chat With Us
       </div>
       <div
@@ -318,7 +318,7 @@ function AdminQueryInfo() {
                   }}
                 >
                   <div
-                    className="text-xl font-bold mb-14 lg:mb-4"
+                    className="text-lg font-bold mb-14 lg:mb-4"
                     style={{ wordWrap: "break-word" }}
                   >
                     {/* // Showing Text of Message */}
@@ -362,7 +362,7 @@ function AdminQueryInfo() {
                   style={{ width: "70%" }}
                 >
                   <div
-                    className="text-xl font-bold mb-14 lg:mb-4"
+                    className="text-lg font-bold mb-14 lg:mb-4"
                     style={{
                       wordWrap: "break-word",
                       filter: item?.seen === false ? "blur(5px)" : "blur(0px)",
