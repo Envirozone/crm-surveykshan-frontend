@@ -37,7 +37,7 @@ function LoginPage() {
             <h1 className="align-middle mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl">
               Sign in to{" "}
               <mark className="px-2 text-white bg-blue-600 rounded align-middle">
-                Raise Your Problem
+                Raise Your Query
               </mark>
             </h1>
             <form onSubmit={handleForm}>

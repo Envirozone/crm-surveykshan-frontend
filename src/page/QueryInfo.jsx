@@ -304,7 +304,11 @@ function QueryInfo() {
               <div key={item._id} className="flex">
                 <div
                   className="p-4 mr-10 bg-white block border rounded-md relative mb-4 border-black"
-                  style={{ width: "70%" }}
+                  style={{
+                    width: "70%",
+                    borderRadius: "20px 20px 20px 0px",
+                    boxShadow: "-2px 2px 4px gray ",
+                  }}
                 >
                   <div
                     className="text-lg font-bold mb-14 lg:mb-4"
@@ -354,7 +358,12 @@ function QueryInfo() {
               <div key={item._id} className="flex flex-row-reverse">
                 <div
                   className="p-4 block border rounded-md relative mb-4 border-black"
-                  style={{ width: "70%", backgroundColor: "#D9FDD3" }}
+                  style={{
+                    width: "70%",
+                    backgroundColor: "#D9FDD3",
+                    borderRadius: "20px 20px 0px 20px",
+                    boxShadow: "2px 2px 4px gray",
+                  }}
                 >
                   <div
                     className="text-lg font-bold mb-14 lg:mb-4"

@@ -315,6 +315,8 @@ function AdminQueryInfo() {
                   style={{
                     width: "70%",
                     backgroundColor: "#D9FDD3",
+                    borderRadius: "20px 20px 0px 20px",
+                    boxShadow: "2px 2px 4px gray",
                   }}
                 >
                   <div
@@ -359,7 +361,11 @@ function AdminQueryInfo() {
               <div className="flex" key={item._id}>
                 <div
                   className="p-4 block bg-white border rounded-md relative mb-4 border-black"
-                  style={{ width: "70%" }}
+                  style={{
+                    width: "70%",
+                    borderRadius: "20px 20px 20px 0px",
+                    boxShadow: "-2px 2px 4px gray ",
+                  }}
                 >
                   <div
                     className="text-lg font-bold mb-14 lg:mb-4"
