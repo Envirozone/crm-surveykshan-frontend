@@ -65,8 +65,8 @@ function UserDashBoard() {
           // style={{ wordWrap: "break-word" }}
         >
           <div>
-            <div className="flex gap-5 p-1">
-              <div>
+            <div className="flex p-1">
+              <div className="w-52">
                 <p className="font-medium text-black-600 text-2xl">
                   UserName:{" "}
                 </p>
@@ -81,8 +81,8 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 p-1">
-              <div>
+            <div className="flex p-1">
+              <div className="w-52">
                 <p className="font-medium text-black-600 text-2xl">
                   Industry Name:{" "}
                 </p>
@@ -97,8 +97,8 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 p-1 w-full">
-              <div>
+            <div className="flex p-1 w-full">
+              <div className="w-52">
                 <p className="font-medium text-black-600 text-2xl">Email: </p>
               </div>
               <div>
@@ -111,8 +111,8 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 p-1">
-              <div>
+            <div className="flex p-1">
+              <div className="w-52">
                 <p className="font-medium text-black-600 text-2xl">
                   Phone No.:{" "}
                 </p>
@@ -127,8 +127,8 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 p-1">
-              <div>
+            <div className="flex p-1">
+              <div className="w-52">
                 <p className="font-medium text-black-600 text-2xl">State: </p>
               </div>
               <div>
@@ -141,8 +141,8 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 p-1">
-              <div>
+            <div className="flex p-1">
+              <div className="w-52">
                 <p className="font-medium text-black-600 text-2xl ">City: </p>
               </div>
               <div>
@@ -155,8 +155,8 @@ function UserDashBoard() {
           </div>
 
           <div>
-            <div className="flex gap-5 p-1">
-              <div>
+            <div className="flex p-1">
+              <div className="w-52">
                 <p className="font-medium text-black-600 text-2xl">Address: </p>
               </div>
               <div>
