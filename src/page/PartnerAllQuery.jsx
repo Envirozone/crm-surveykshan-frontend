@@ -18,7 +18,7 @@ function PartnerAllQuery() {
   async function getSeenMessageCounts() {
     try {
       const res = await axios(
-        `${window.apiURL}/ticket/getCount/allUnseenMessageOfAllTickets/other`
+        `${window.apiURL}/ticket/getCount/allUnseenMessageOfAllTickets/surveykshan`
       );
       if (res.status === 200) {
         setSeenMessageCounts(res.data);
@@ -244,9 +244,9 @@ function PartnerAllQuery() {
               <th scope="col" className="px-6 py-3">
                 Details
               </th>
-              <th scope="col" className="px-6 py-3">
+              {/* <th scope="col" className="px-6 py-3">
                 Delete
-              </th>
+              </th> */}
             </tr>
           </thead>
           <tbody>
@@ -370,7 +370,7 @@ function PartnerAllQuery() {
 
                     <td className="px-6 py-4 text-center">
                       <Link
-                        to={`/partner-all-queries/${query._id}`}
+                        to={`/queries/${query._id}`}
                         className="font-medium text-blue-600  hover:underline"
                       >
                         <span class="material-symbols-outlined text-blue-500 font-bold-100 text-4xl">
@@ -379,13 +379,13 @@ function PartnerAllQuery() {
                         {/* More Info */}
                       </Link>
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    {/* <td className="px-6 py-4 text-center">
                       <button onClick={() => handleDeleteTicket(query._id)}>
                         <span className="material-symbols-outlined text-red-500 font-bold-100 text-4xl">
                           delete
                         </span>
                       </button>
-                    </td>
+                    </td> */}
                   </tr>
                 );
               })}

@@ -41,7 +41,7 @@ const AllRoutes = () => {
       <Route path="/denied" element={<Denied />}></Route>
       <Route path="*" element={<PageNotFound />}></Route>
 
-      <Route element={<RequireAuth allowRole={["client"]} />}>
+      <Route element={<RequireAuth allowRole={["client","partner"]} />}>
         <Route path="/queries/:id" element={<QueryInfo />}></Route>
         <Route path="/queries" element={<Queries />}></Route>
         <Route path="/addQuery" element={<AddQuery />}></Route>
