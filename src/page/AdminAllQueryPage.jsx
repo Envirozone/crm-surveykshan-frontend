@@ -110,7 +110,15 @@ function AdminAllQueryPage() {
         }
       });
   };
-
+  useEffect(()=>{
+    const interval= setInterval(()=>{
+      //  getAllQueriesData();
+       getSeenMessageCounts();
+     },1000)
+     return ()=>{
+       clearInterval(interval);
+     }
+   },[])
   return (
     <>
       <div className="relative overflow-x-auto shadow-md rounded-lg m-4 flex flex-col gap-4 lg:flex-row lg:gap-0 items-center justify-between p-2 border border-blue-300">

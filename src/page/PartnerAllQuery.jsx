@@ -112,7 +112,15 @@ function PartnerAllQuery() {
         }
       });
   };
-
+useEffect(()=>{
+ const interval= setInterval(()=>{
+    // getAllQueriesData();
+    getSeenMessageCounts();
+  },1000)
+  return ()=>{
+    clearInterval(interval);
+  }
+},[])
   return (
     <>
       <div className="relative overflow-x-auto shadow-md rounded-lg m-4 flex flex-col gap-4 lg:flex-row lg:gap-0 items-center justify-between p-2 border border-blue-300">
@@ -280,7 +288,7 @@ function PartnerAllQuery() {
                         const [ticketId, counts] = item.split("+");
                         if (ticketId === query._id) {
                           return (
-                            <Link to={`/partner-all-queries/${query._id}`}>
+                            <Link to={`/queries/${query._id}`}>
                               <button
                                 key={ticketId}
                                 type="button"

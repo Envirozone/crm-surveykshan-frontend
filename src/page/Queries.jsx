@@ -68,6 +68,15 @@ function Queries() {
     setStatusFilter(e.target.value);
   };
 
+  useEffect(()=>{
+    const interval= setInterval(()=>{
+      //  getAllQueriesData();
+       getSeenMessageCounts();
+     },1000)
+     return ()=>{
+       clearInterval(interval);
+     }
+   },[])
   return (
     <>
       <div className="relative overflow-x-auto shadow-md rounded-lg m-4 flex flex-col lg:flex-row items-center justify-between p-2 border border-blue-300">
