@@ -12,6 +12,8 @@ function Navbar() {
   const navigate = useNavigate();
   let isUserLoggedIn = localStorage.getItem("isLoggedIn");
   let userRole = localStorage.getItem("role");
+  const userData = localStorage.getItem("data");
+  let { username } = userData ? JSON.parse(userData) : "none";
 
   // Handle Logout Button
   async function logout() {
@@ -50,7 +52,7 @@ function Navbar() {
 
   return (
     <div
-      className="flex items-center justify-between pl-10 pr-10 relative w-full"
+      className="flex items-center justify-between pl-5 pr-5 relative w-full"
       style={{ height: "10vh", backgroundColor: "#04093D" }}
     >
       {/* Applying Image in Nav Bar  */}
@@ -71,21 +73,24 @@ function Navbar() {
           className="md:hidden text-white cursor-pointer flex items-center justify-center gap-4"
           onClick={handleMenuBar}
         >
-          <div>
+          <div className="flex flex-row justify-center items-center gap-2">
             {userRole === "admin" ? (
               <>
+                <span className="text-orange-400 text-sm">{username}</span>
                 <span className="material-symbols-outlined text-4xl">
                   admin_panel_settings
                 </span>
               </>
             ) : userRole === "partner" ? (
               <>
+                <span className="text-orange-400 text-sm">{username}</span>
                 <span className="material-symbols-outlined text-4xl">
                   handshake
                 </span>
               </>
             ) : (
               <>
+                <span className="text-orange-400 text-sm">{username}</span>
                 <span className="material-symbols-outlined text-4xl">
                   factory
                 </span>
@@ -220,18 +225,21 @@ function Navbar() {
             <>
               {userRole === "admin" ? (
                 <>
+                  <span className="text-orange-400 text-lg">{username}</span>
                   <span className="material-symbols-outlined text-4xl">
                     admin_panel_settings
                   </span>
                 </>
               ) : userRole === "partner" ? (
                 <>
+                  <span className="text-orange-400 text-lg">{username}</span>
                   <span className="material-symbols-outlined text-4xl">
                     handshake
                   </span>
                 </>
               ) : (
                 <>
+                  <span className="text-orange-400 text-lg">{username}</span>
                   <span className="material-symbols-outlined text-4xl">
                     factory
                   </span>

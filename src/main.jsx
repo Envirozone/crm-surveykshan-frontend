@@ -9,6 +9,7 @@ import store from "./Redux/Store";
 import Navbar from "./component/Navbar.jsx";
 window.apiURL = "https://crm.accesssurveykshan.co.in/v1";
 // window.apiURL = "http://localhost:4001/v1";
+// window.apiURL = "http://192.168.1.14:4001/v1";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>

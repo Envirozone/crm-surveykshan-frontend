@@ -206,6 +206,42 @@ function AdminQueryInfo() {
     }
   };
 
+  // Handle Delete Message Button
+  const handleDeleteMessageButton = async (messageId) => {
+    Swal.fire({
+      title: "Message Delete Confirmation",
+      text: "Are you sure you want to delete this message?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Delete Message",
+    })
+      .then(async (result) => {
+        if (result.isConfirmed) {
+          const res = await axios.delete(
+            `${window.apiURL}/ticket/deleteMessageOfTicket/${id}/${messageId}`
+          );
+
+          if (res?.status === 200) {
+            Swal.fire(
+              "Deleted!",
+              "Message Deleted Successfully. 😊😊",
+              "success"
+            );
+            getData();
+          }
+        }
+      })
+      .catch((error) => {
+        if (error.response.data.message) {
+          Swal.fire(error.response.data.message);
+        } else {
+          Swal.fire(error.message);
+        }
+      });
+  };
+
   return (
     <div className="p-4">
       {/* Query Data  */}
@@ -338,6 +374,13 @@ function AdminQueryInfo() {
                     )}
                   </div>
                   <div className="flex absolute bottom-2 right-2 gap-2 items-center p-1">
+                    {/* // Added New Button To Delete Message  */}
+                    <span
+                      className="material-symbols-outlined cursor-pointer text-red-700 font-medium"
+                      onClick={() => handleDeleteMessageButton(item?._id)}
+                    >
+                      delete
+                    </span>
                     <p className="font-medium bg-white border rounded-md px-1 py-.5">
                       {item.send_by} |{" "}
                       {`${item.message_time.split("T")[0]}, ${

@@ -68,15 +68,15 @@ function Queries() {
     setStatusFilter(e.target.value);
   };
 
-  useEffect(()=>{
-    const interval= setInterval(()=>{
+  useEffect(() => {
+    const interval = setInterval(() => {
       //  getAllQueriesData();
-       getSeenMessageCounts();
-     },1000)
-     return ()=>{
-       clearInterval(interval);
-     }
-   },[])
+      getSeenMessageCounts();
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
   return (
     <>
       <div className="relative overflow-x-auto shadow-md rounded-lg m-4 flex flex-col lg:flex-row items-center justify-between p-2 border border-blue-300">
@@ -140,9 +140,9 @@ function Queries() {
               <th scope="col" className="px-6 py-3 text-center">
                 Status
               </th>
-              <th scope="col" className="px-6 py-3">
+              {/* <th scope="col" className="px-6 py-3">
                 Details
-              </th>
+              </th> */}
               <th scope="col" className="px-6 py-3">
                 <span className="sr-only">Edit</span>
               </th>
@@ -267,17 +267,16 @@ function Queries() {
                       </p>
                     </td>
 
-                    <td className="px-6 py-4 text-center">
+                    {/* <td className="px-6 py-4 text-center">
                       <Link
                         to={`/queries/${query._id}`}
                         className="font-medium text-blue-600  hover:underline"
                       >
-                        {/* More Info */}
                         <span class="material-symbols-outlined text-blue-500 font-bold-100 text-4xl">
                           quick_reference
                         </span>
                       </Link>
-                    </td>
+                    </td> */}
                   </tr>
                 );
               })}

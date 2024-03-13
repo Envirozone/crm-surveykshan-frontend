@@ -112,15 +112,15 @@ function PartnerAllQuery() {
         }
       });
   };
-useEffect(()=>{
- const interval= setInterval(()=>{
-    // getAllQueriesData();
-    getSeenMessageCounts();
-  },1000)
-  return ()=>{
-    clearInterval(interval);
-  }
-},[])
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // getAllQueriesData();
+      getSeenMessageCounts();
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
   return (
     <>
       <div className="relative overflow-x-auto shadow-md rounded-lg m-4 flex flex-col gap-4 lg:flex-row lg:gap-0 items-center justify-between p-2 border border-blue-300">
@@ -249,9 +249,9 @@ useEffect(()=>{
               <th scope="col" className="px-6 py-3 text-center">
                 Status
               </th>
-              <th scope="col" className="px-6 py-3">
+              {/* <th scope="col" className="px-6 py-3">
                 Details
-              </th>
+              </th> */}
               {/* <th scope="col" className="px-6 py-3">
                 Delete
               </th> */}
@@ -376,7 +376,7 @@ useEffect(()=>{
                       </p>
                     </td>
 
-                    <td className="px-6 py-4 text-center">
+                    {/* <td className="px-6 py-4 text-center">
                       <Link
                         to={`/queries/${query._id}`}
                         className="font-medium text-blue-600  hover:underline"
@@ -384,9 +384,9 @@ useEffect(()=>{
                         <span class="material-symbols-outlined text-blue-500 font-bold-100 text-4xl">
                           quick_reference
                         </span>
-                        {/* More Info */}
                       </Link>
-                    </td>
+                    </td> */}
+
                     {/* <td className="px-6 py-4 text-center">
                       <button onClick={() => handleDeleteTicket(query._id)}>
                         <span className="material-symbols-outlined text-red-500 font-bold-100 text-4xl">
