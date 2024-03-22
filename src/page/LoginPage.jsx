@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../Redux/Slices/AuthSlice";
 import "./index.css";
+import toast from "react-hot-toast";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -13,10 +14,18 @@ function LoginPage() {
 
   async function handleForm(e) {
     e.preventDefault();
-    const response = await dispatch(login({ username, password }));
-    window.location.reload(true);
-    if (response?.payload?.success === true) {
-      navigate("/");
+    try {
+      const response = dispatch(login({ username, password }));
+      if (response?.payload?.status === 200) {
+        navigate("/");
+        
+      }
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error(error.message);
+      }
     }
   }
 

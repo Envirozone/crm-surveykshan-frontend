@@ -13,8 +13,9 @@ export const login = createAsyncThunk("/login", async (data) => {
     const res = await axios.post(`${window.apiURL}/user/login`, data);
     if (res.status === 200) {
       toast.success(res.data.message);
+      window.location.reload(true);
     }
-    return (await res).data;
+    return res.data;
   } catch (error) {
     if (error.response) {
       toast.error(error.response.data.message);
@@ -39,14 +40,16 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        localStorage.setItem("data", JSON.stringify(action?.payload?.user));
-        // localStorage.setItem("data", action?.payload?.user || "Not Set Data");
-        localStorage.setItem("isLoggedIn", true);
-        localStorage.setItem("role", action?.payload?.user?.usertype);
-        localStorage.setItem("accessToken", action?.payload?.access_token);
-        state.isLoggedIn = true;
-        state.data = action?.payload?.user;
-        state.role = action?.payload?.user?.usertype;
+        if (action?.payload?.user) {
+          localStorage.setItem("data", JSON.stringify(action?.payload?.user));
+          // localStorage.setItem("data", action?.payload?.user || "Not Set Data");
+          localStorage.setItem("isLoggedIn", true);
+          localStorage.setItem("role", action?.payload?.user?.usertype);
+          localStorage.setItem("accessToken", action?.payload?.access_token);
+          state.isLoggedIn = true;
+          state.data = action?.payload?.user;
+          state.role = action?.payload?.user?.usertype;
+        }
       })
 
       .addCase("LOGOUT", (state, action) => {
